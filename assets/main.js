@@ -12,28 +12,61 @@ function initMap() {
     // New map
     var map = new google.maps.Map(document.getElementById('map'), options);
 
-    // Content box for marker
-    var contentString = '<div id="content">' +
-    '<h6>Rira Irish Pub</h6>' +
-    '</div>';
-
-    // Content for info window
-    var infowindow = new google.maps.InfoWindow({
-        content: contentString
-    });
-
-    // Add marker
-    var marker = new google.maps.Marker({
-        position: {
-            lat: 43.076951,
-            lng: -70.757214
+    // Array of markers 
+    var markerArray = [{
+            coords: {
+                lat: 43.075705,
+                lng: -70.760580
+            },
+            iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+            content: '<h6>Jumpin Jays Fish Cafe</h6>'
         },
-        map: map,
-        title: 'Rira Irish Pub Test'
-    });
+        {
+            coords: {
+                lat: 43.077258,
+                lng: -70.754034
+            },
+            content: '<h6>The Rosa Restaurant</h6>'
+        },
+        {
+            coords: {
+                lat: 43.079041,
+                lng: -70.759485
+            },
+            content: '<h6>Earth Eagle Brewings</h6>'
+        }
+    ];
 
-    // Add even listener for marker click
-    marker.addListener('click', function () {
-        infowindow.open(map, marker);
-    });
+    // Loop through marker array
+
+    for (var i = 0; i < markerArray.length; i++) {
+        addMarker(markerArray[i]);
+    }
+
+    // Add marker function
+    function addMarker(props) {
+        // Add marker
+        var marker = new google.maps.Marker({
+            position: props.coords,
+            map: map,
+        });
+
+        // Check for custom icon 
+        if (props.iconImage) {
+            // Set icon image
+            marker.setIcon(props.iconImage);
+        }
+
+        // Check for content
+        if (props.content) {
+            // Set content
+            var infowindow = new google.maps.InfoWindow({
+                content: props.content
+            });
+            // Add even listener for marker click
+            marker.addListener('click', function () {
+                infowindow.open(map, marker);
+            });
+        }
+    }
 }
