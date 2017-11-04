@@ -1,73 +1,96 @@
 // Here is the key for the Zomato API = cd1577ead710b996f1a2d0ecae1431dd
+var map;
+var infowindow;
+var markersArray = [];
+
 function initMap() {
     // Map options
     var options = {
-        zoom: 14,
+        zoom: 8,
         center: {
-            lat: 43.0718,
-            lng: -70.7626
+            lat: 43.9654,
+            lng: -70.8227
         }
     }
 
     // New map
-    var map = new google.maps.Map(document.getElementById('map'), options);
+    map = new google.maps.Map(document.getElementById('map'), options);
 
-    // Array of markers 
-    var markerArray = [{
-            coords: {
-                lat: 43.075705,
-                lng: -70.760580
-            },
-            iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-            content: '<h6>Jumpin Jays Fish Cafe</h6>'
-        },
-        {
-            coords: {
-                lat: 43.077258,
-                lng: -70.754034
-            },
-            content: '<h6>The Rosa Restaurant</h6>'
-        },
-        {
-            coords: {
-                lat: 43.079041,
-                lng: -70.759485
-            },
-            content: '<h6>Earth Eagle Brewings</h6>'
-        }
-    ];
+    $(".submit-parameters").click(searchCrawlLocations)
 
-    // Loop through marker array
+    infowindow = new google.maps.InfoWindow();
 
-    for (var i = 0; i < markerArray.length; i++) {
-        addMarker(markerArray[i]);
-    }
+}
 
-    // Add marker function
-    function addMarker(props) {
-        // Add marker
-        var marker = new google.maps.Marker({
-            position: props.coords,
-            map: map,
-        });
-
-        // Check for custom icon 
-        if (props.iconImage) {
-            // Set icon image
-            marker.setIcon(props.iconImage);
-        }
-
-        // Check for content
-        if (props.content) {
-            // Set content
-            var infowindow = new google.maps.InfoWindow({
-                content: props.content
-            });
-            // Add even listener for marker click
-            marker.addListener('click', function () {
-                infowindow.open(map, marker);
-            });
+function callback(results, status) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length; i++) {
+            createMarker(results[i]);
         }
     }
 }
 
+function createMarker(place) {
+    var placeLoc = place.geometry.location;
+    var marker = new google.maps.Marker({
+        map: map,
+        position: place.geometry.location
+    });
+
+    markersArray.push(marker);
+
+    google.maps.event.addListener(marker, 'click', function () {
+        infowindow.setContent(place.name);
+        infowindow.open(map, this);
+    });
+
+    google.maps.event.addListener(marker, 'click', function () {
+        infowindow.setContent(place.name);
+        infowindow.open(map, this);
+    });
+}
+
+function searchCrawlLocations() {
+    for (var i = 0; i < markersArray.length; i++) {
+        markersArray[i].setMap(null);
+    }
+    markersArray = [];
+    var searchType = $(".search-type").val();
+    var searchLocation = $(".location-search").val();
+    console.log(searchType);
+    console.log(searchLocation);
+    var geocoder = new google.maps.Geocoder();
+
+    geocoder.geocode({
+        'address': searchLocation
+    }, function (results, status) {
+
+        if (status == google.maps.GeocoderStatus.OK) {
+            var latitude = results[0].geometry.location.lat();
+            var longitude = results[0].geometry.location.lng();
+            console.log(latitude);
+            console.log(longitude);
+
+            var locationSearch = {
+                location: {
+                    lat: latitude,
+                    lng: longitude
+                },
+                radius: 8000,
+                query: searchType
+            };
+
+            map.setCenter({
+                lat: latitude,
+                lng: longitude
+            });
+            map.setZoom(14);
+            var service = new google.maps.places.PlacesService(map);
+            service.textSearch(locationSearch, callback)
+
+
+
+
+        }
+    });
+}
