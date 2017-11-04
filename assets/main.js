@@ -17,6 +17,7 @@ function initMap() {
     '<h6>Rira Irish Pub</h6>' +
     '</div>';
 
+    // Content for info window
     var infowindow = new google.maps.InfoWindow({
         content: contentString
     });
@@ -31,6 +32,7 @@ function initMap() {
         title: 'Rira Irish Pub Test'
     });
 
+    // Add even listener for marker click
     marker.addListener('click', function () {
         infowindow.open(map, marker);
     });
