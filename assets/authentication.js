@@ -17,8 +17,9 @@
  const btnLogin = $("#btnLogin");
  const btnSignUp = $("#btnSignUp");
  const btnLogout = $("#btnLogout");
+ const currentUser = firebase.auth().currentUser;
 
- const user = firebase.auth().currentUser;
+
 
  // This is the login button.    
  $("#btnlogin").on("click", function() {
@@ -37,16 +38,10 @@
      const email = $("#txtEmail").val().trim();
      const auth = firebase.auth();
      const promise = auth.createUserWithEmailAndPassword(email, password);
-     promise.catch(e => console.log(e.message))
-     var user = firebase.auth().currentUser;
+     promise.catch(e => console.log(e.message));
 
 
 
-     user.sendEmailVerification().then(function() {
-         console.log("The email has been sent")
-     }).catch(function(error) {
-         console.log(error);
-     });
  })
 
  $("#btnLogOut").on("click", function() {
@@ -61,6 +56,11 @@
  // E.x. if the user is logged in or logged out.
  firebase.auth().onAuthStateChanged(firebaseUser => {
      if (firebaseUser) {
+         firebaseUser.sendEmailVerification().then(function() {
+             console.log("Email sent");
+         }).catch(function(error) {
+             console.log(error);
+         });
          console.log(firebaseUser);
          console.log("The user is signed in");
          btnLogout.css("display", "inline");
