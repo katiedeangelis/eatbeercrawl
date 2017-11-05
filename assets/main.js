@@ -23,8 +23,10 @@ function initMap() {
 }
 
 function callback(results, status) {
+    var numberOfLocations = parseInt($(".location-number").val());
     if (status === google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < results.length; i++) {
+        results = randomize(results);
+        for (var i = 0; i < numberOfLocations; i++) {
             createMarker(results[i]);
         }
     }
@@ -76,7 +78,7 @@ function searchCrawlLocations() {
                     lat: latitude,
                     lng: longitude
                 },
-                radius: 8000,
+                rankby: "distance",
                 query: searchType
             };
 
@@ -94,3 +96,22 @@ function searchCrawlLocations() {
         }
     });
 }
+
+function randomize(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+  }
