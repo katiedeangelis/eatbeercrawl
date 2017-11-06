@@ -8,13 +8,7 @@
  };
 
  firebase.initializeApp(config);
-
-
-
-
-
  var provider = new firebase.auth.GoogleAuthProvider();
- console.log(provider);
 
 
  const txtEmail = $("#txtEmail");
@@ -42,11 +36,7 @@
  })
 
  $("#btnSignUp").on("click", function() {
-     const password = $("#txtPassword").val().trim();
-     const email = $("#txtEmail").val().trim();
-     const auth = firebase.auth();
-     const promise = auth.createUserWithEmailAndPassword(email, password);
-     promise.catch(e => console.log(e.message));
+     firebase.auth().signUpWithRedirect(provider);
      sendEmailVerification();
  })
 
@@ -57,12 +47,12 @@
 
  firebase.auth().onAuthStateChanged(function(user) {
      if (user) {
-         $("body").append("<h1>" + user.email + "</h1>");
+         $("#user_name").html("<h1>" + user.displayName + "</h1>");
          $("#btnLogout").show();
          $("#btnSignUp, #btnLogin").hide();
-
-
-
+     } else {
+         $("#btnLogout").hide();
+         $("#btnSignUp, #btnLogin").show();
      }
  })
 
