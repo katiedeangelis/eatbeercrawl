@@ -11,3 +11,9 @@ db.collection("users").add({
     .catch(function(error) {
         console.error("Error adding document: ", error);
     });
+
+db.collection("users").get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+        console.log(`${doc.id} => ${doc.data().first}`);
+    });
+});
