@@ -15,9 +15,7 @@ function initMap() {
 
     // New map
     map = new google.maps.Map(document.getElementById('map'), options);
-
     $(".submit-parameters").click(searchCrawlLocations)
-
     infowindow = new google.maps.InfoWindow();
 
 }
@@ -41,12 +39,12 @@ function createMarker(place) {
 
     markersArray.push(marker);
 
-    google.maps.event.addListener(marker, 'click', function () {
+    google.maps.event.addListener(marker, 'click', function() {
         infowindow.setContent(place.name);
         infowindow.open(map, this);
     });
 
-    google.maps.event.addListener(marker, 'click', function () {
+    google.maps.event.addListener(marker, 'click', function() {
         infowindow.setContent(place.name);
         infowindow.open(map, this);
     });
@@ -65,7 +63,7 @@ function searchCrawlLocations() {
 
     geocoder.geocode({
         'address': searchLocation
-    }, function (results, status) {
+    }, function(results, status) {
 
         if (status == google.maps.GeocoderStatus.OK) {
             var latitude = results[0].geometry.location.lat();
@@ -98,20 +96,21 @@ function searchCrawlLocations() {
 }
 
 function randomize(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-  
+    var currentIndex = array.length,
+        temporaryValue, randomIndex;
+
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {
-  
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-  
-      // And swap it with the current element.
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
     }
-  
+
     return array;
-  }
+}
