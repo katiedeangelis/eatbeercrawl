@@ -2,6 +2,7 @@
 var map;
 var infowindow;
 var markersArray = [];
+var numberOfLocations;
 
 function initMap() {
     // Map options
@@ -15,13 +16,13 @@ function initMap() {
 
     // New map
     map = new google.maps.Map(document.getElementById('map'), options);
-    $(".submit-parameters").click(searchCrawlLocations)
+    $(".submit").click(searchCrawlLocations)
     infowindow = new google.maps.InfoWindow();
 
 }
 
 function callback(results, status) {
-    var numberOfLocations = parseInt($(".location-number").val());
+    numberOfLocations = parseInt($("#search-number").val());
     if (status === google.maps.places.PlacesServiceStatus.OK) {
         results = randomize(results);
         for (var i = 0; i < numberOfLocations; i++) {
@@ -55,8 +56,8 @@ function searchCrawlLocations() {
         markersArray[i].setMap(null);
     }
     markersArray = [];
-    var searchType = $(".search-type").val();
-    var searchLocation = $(".location-search").val();
+    var searchType = $("#search-type").val();
+    var searchLocation = $("#search-location").val();
     console.log(searchType);
     console.log(searchLocation);
     var geocoder = new google.maps.Geocoder();
