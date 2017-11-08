@@ -8,6 +8,8 @@ var results;
 
 $(document).ready(function() {
 
+    var autocomplete = new google.maps.places.Autocomplete(document.getElementById("search-location"), { types: ['(cities)'] });
+
 
     $("#the_submit_button").on("click", function(event) {
         event.preventDefault();

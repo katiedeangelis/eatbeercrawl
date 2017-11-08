@@ -77,7 +77,7 @@
                     <div class="modal-body">
                         <header class="hero-search-filter">
                             <div class="hero-search-filter-content">
-                                <form class="hero-search-filter-form" action="">
+                                <form class="hero-search-filter-form">
                                     <div class="col-sm-12">
                                         <label for="findtext">Find</label>
                                         <input id="search-type" class="hero-search-filter-form-find" type="text" />
@@ -85,12 +85,18 @@
                                         <label for="findlocate">Near</label>
                                         <input id="search-location" class="hero-search-filter-form-near" type="text" />
                                         <div class="divider">&nbsp;</div>
-                                        <label for="findlocate">Number</label>
-                                        <input id="search-number" class="hero-search-filter-form-near" type="text" />
+                                        <label for="numLocate">Number</label>
+                                        <select id="num_ques" name="numLocate">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                        </select>
                                         <br>
-                                        <button class="button">
-                                            <i class="submit">Submit</i>
-                                        </button>
+
+                                        <button class="button" id="the_submit_button" type="submit">
+                                        Submit
+                                    </button>
                                     </div>
                                 </form>
                             </div>
@@ -103,102 +109,14 @@
                 </div>
 
 
-                <div class="modal-body">
-                    <header class="hero-search-filter">
-                        <div class="hero-search-filter-content">
-                            <img class="hero-search-filter-logo" src="https://placehold.it/160x80" alt="" />
-                            <form class="hero-search-filter-form">
-                                <div class="col-sm-12">
-                                    <label for="findtext">Find</label>
-                                    <input id="search-type" class="hero-search-filter-form-find" type="text" />
-                                    <div class="divider">&nbsp;</div>
-                                    <label for="findlocate">Near</label>
-                                    <input id="search-location" class="hero-search-filter-form-near" type="text" />
-                                    <label for="findlocate">Number</label>
-                                    <input id="search-number" class="hero-search-filter-form-near" type="text" />
-                                    <br>
-                                    <button class="button" id="the_submit_button" type="submit">
-                                        Submit
-                                    </button>
-                                </div>
-                            </form>
-                            <ul class="hero-search-filter-menu menu align-center">
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-cutlery" aria-hidden="true"></i> Restaurants</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-glass" aria-hidden="true"></i> Nightlife</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-wrench" aria-hidden="true"></i> Home Services</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-cutlery" aria-hidden="true"></i> Delivery</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </header>
 
 
             </div>
         </div>
     </div>
     <br>
-    <!-- <div class="container-fluid">
-        <div class="row">
-            <h2>Past Crawls</h2>
-            <div id="pastCrawls col-sm-12">
-            </div>
-        </div>
-    </div> -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- <div id="user-authentication">
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
-            <label for="txt-email">Email</label>
-            <input id="txtEmail" type="email" placeholder="Email">
-            <br>
-            <label for="txtPassword">Password</label>
-            <input id="txtPassword" type="password" placeholder="Password">
-            <br>
-            <button id="btnLogin" class="btn btn-action">
-                    Log in
-                </button>
-            <button id="btnSignUp" class="btn btn-primary">
-                    Sign up
-                </button>
-            <button id="btnLogout" class="btn btn-action">
-                    Log out
-                </button>
-        </div> -->
-
-
-
-
-
-
-
-
-
-
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfbwSYOD_QK_8tWSFJgtCFSvGw_3G3JLU">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?v=3&amp;libraries=places&key=AIzaSyCfbwSYOD_QK_8tWSFJgtCFSvGw_3G3JLU">
     </script>
     <script src="assets/main.js"></script>
     <script src="assets/moment.min.js"></script>
