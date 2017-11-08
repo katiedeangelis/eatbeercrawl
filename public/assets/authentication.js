@@ -34,6 +34,8 @@
 
  })
 
+
+
  $("#btnLogout").on("click", function() {
      console.log("clicked");
      $(".userInformation").empty();
@@ -47,6 +49,9 @@
          $("#user_name").html("<h1>" + user.displayName + "</h1>");
          $("#user_email").html("<p>" + user.email + "</p>")
          $("#btnLogout").show();
+         $("#display_name").html("<h3>" + user.displayName + "</h3>");
+         $("#user-profile-pic").attr("src", user.photoURL);
+
          $("#btnSignUp, #btnLogin").hide();
      } else {
          alert("The user is not verified");
@@ -70,7 +75,7 @@
              creatorEmail: firebase.auth().currentUser.email,
              type: $("#search-type").val(),
              main_location: $("#search-location").val(),
-             //  locations: results
+
          })
          .then(function(docRef) {
              console.log("Document written with ID: ", docRef.id);
