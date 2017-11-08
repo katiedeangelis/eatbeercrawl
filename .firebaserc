@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "eatbeercrawl",
+    "eatbeercrawlPROD": "eatbeercrawl"
+  }
+}
