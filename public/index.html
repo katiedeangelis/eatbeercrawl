@@ -28,14 +28,12 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">WebSiteName</a>
+                <a class="navbar-brand" href="#">Eat.Beer.Crawl</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="prof.html" class="prof-li">Profile</a>
-                </li>
-                <li>
-                    <a class="prof-li" data-toggle="modal" data-target="#myModal">Build A Crawl!</a>
+                    <a href="prof.html">
+                        <span class="glyphicon "></span> Profile</a>
                 </li>
                 <li id="btnSignUp">
                     <a href="#">
@@ -61,68 +59,62 @@
             </div>
         </div>
     </div>
+
     <br>
-    <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+    <div class="container-fluid">
+        <!-- Trigger the modal with a button -->
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Build A Crawl!</button>
 
-    <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
 
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
-                </div>
-                <div class="modal-body">
-                    <header class="hero-search-filter">
-                        <div class="hero-search-filter-content">
-                            <img class="hero-search-filter-logo" src="https://placehold.it/160x80" alt="" />
-                            <form class="hero-search-filter-form" action="">
-                                <div class="col-sm-12">
-                                    <label for="findtext">Find</label>
-                                    <input id="search-type" class="hero-search-filter-form-find" type="text" />
-                                    <div class="divider">&nbsp;</div>
-                                    <label for="findlocate">Near</label>
-                                    <input id="search-location" class="hero-search-filter-form-near" type="text" />
-                                    <label for="findlocate">Number</label>
-                                    <input id="search-number" class="hero-search-filter-form-near" type="text" />
-                                    <br>
-                                    <button class="button">
-                                        <i class="submit">Submit</i>
-                                    </button>
-                                </div>
-                            </form>
-                            <ul class="hero-search-filter-menu menu align-center">
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-cutlery" aria-hidden="true"></i> Restaurants</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-glass" aria-hidden="true"></i> Nightlife</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-wrench" aria-hidden="true"></i> Home Services</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-cutlery" aria-hidden="true"></i> Delivery</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </header>
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Create A Crawl! </h4>
+                    </div>
 
+                    <div class="modal-body">
+                        <header class="hero-search-filter">
+                            <div class="hero-search-filter-content">
+                                <form class="hero-search-filter-form" action="">
+                                    <div class="col-sm-12">
+                                        <label for="findtext">Find</label>
+                                        <input id="search-type" class="hero-search-filter-form-find" type="text" />
+                                        <div class="divider">&nbsp;</div>
+                                        <label for="findlocate">Near</label>
+                                        <input id="search-location" class="hero-search-filter-form-near" type="text" />
+                                        <div class="divider">&nbsp;</div>
+                                        <label for="findlocate">Number</label>
+                                        <input id="search-number" class="hero-search-filter-form-near" type="text" />
+                                        <br>
+                                        <button class="button">
+                                            <i class="submit">Submit</i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </header>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+
             </div>
-
         </div>
     </div>
+    <br>
+    <!-- <div class="container-fluid">
+        <div class="row">
+            <h2>Past Crawls</h2>
+            <div id="pastCrawls col-sm-12">
+            </div>
+        </div>
+    </div> -->
 
 
 
@@ -157,10 +149,8 @@
                 </button>
         </div> -->
 
-    <h1 id="user_name"></h1>
-    </div>
-    </div>
-    </div>
+
+
 
 
 

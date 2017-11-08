@@ -28,11 +28,24 @@
    float: right;
    margin-right: 20px;
  }
+ /*modal style info*/
+
  .modal-body {
    background-color: gray;
  }
+ .close,
+ .modal-title{
+   color: white;
+ }
+ .col-sm-12 {
+   padding: 10px;
+ }
 
- =======
+ .col-sm-12,
+ .modal-header,
+ .modal-footer {
+   background-color: black;
+ }
  /* The switch - the box around the slider */
 
  .switch {
