@@ -63,12 +63,13 @@
      });
  }
 
- function sendUserToFirebase(the_user) {
-     console.log("Here is " + the_user.displayName);
-     db.collection("users").add({
-             user: the_user.displayName,
-             email: the_user.email,
-             photo: the_user.photoURL
+ function save_this_shit() {
+     console.log("YOU CALLED THE FUNCTION");
+     db.collection("trips").add({
+             creator: currentUser,
+             type: $("#search-type").val(),
+             main_location: $("#search-location").val(),
+             //  locations: results
          })
          .then(function(docRef) {
              console.log("Document written with ID: ", docRef.id);
@@ -76,4 +77,5 @@
          .catch(function(error) {
              console.error("Error adding document: ", error);
          });
+
  }

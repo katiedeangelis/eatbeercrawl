@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Patrick+Hand" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/firebaseui/2.4.1/firebaseui.js"></script>
@@ -103,6 +101,48 @@
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
+
+
+                <div class="modal-body">
+                    <header class="hero-search-filter">
+                        <div class="hero-search-filter-content">
+                            <img class="hero-search-filter-logo" src="https://placehold.it/160x80" alt="" />
+                            <form class="hero-search-filter-form">
+                                <div class="col-sm-12">
+                                    <label for="findtext">Find</label>
+                                    <input id="search-type" class="hero-search-filter-form-find" type="text" />
+                                    <div class="divider">&nbsp;</div>
+                                    <label for="findlocate">Near</label>
+                                    <input id="search-location" class="hero-search-filter-form-near" type="text" />
+                                    <label for="findlocate">Number</label>
+                                    <input id="search-number" class="hero-search-filter-form-near" type="text" />
+                                    <br>
+                                    <button class="button" id="the_submit_button" type="submit">
+                                        Submit
+                                    </button>
+                                </div>
+                            </form>
+                            <ul class="hero-search-filter-menu menu align-center">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-cutlery" aria-hidden="true"></i> Restaurants</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-glass" aria-hidden="true"></i> Nightlife</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-wrench" aria-hidden="true"></i> Home Services</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-cutlery" aria-hidden="true"></i> Delivery</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </header>
+
 
             </div>
         </div>
