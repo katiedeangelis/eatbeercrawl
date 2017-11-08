@@ -66,7 +66,8 @@
  function save_this_shit() {
      console.log("YOU CALLED THE FUNCTION");
      db.collection("trips").add({
-             creator: currentUser,
+             creator: firebase.auth().currentUser.displayName,
+             creatorEmail: firebase.auth().currentUser.email,
              type: $("#search-type").val(),
              main_location: $("#search-location").val(),
              //  locations: results
