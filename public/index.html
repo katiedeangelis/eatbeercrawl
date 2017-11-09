@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Patrick+Hand" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/firebaseui/2.4.1/firebaseui.js"></script>
@@ -52,55 +50,32 @@
         </div>
     </div>
 
-    <!-- User Name & Email Listed from original index.html -->
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-4 userInformation">
-                <h1 id="user_name"></h1>
-                <p id="user_email"></p>
-            </div>
-        </div>
-    </div>
 
-    <!-- Profile Page starts here... -->
+    <div id="userIsLoggedIn">
 
-    <div class="jumbotron">
-        <div class="container-fluid center-content">
-            <img id="user-profile-pic" class="img-circle" src="" alt="Generic placeholder image">
-            <h3 id="display_name"></h3>
-            <br>
-            <p class="display-bio"> Google Biography</p>
-        </div>
-    </div>
+        <div class="jumbotron">
 
-    <div class="row"></div>
-
-    <!-- <div class="row">
-    
-            <div class="col-xs-6">
-                <a href="prof.html" class="prof-li">Profile</a>
-            </div>
-            <div class="col-sm-6"></div>
-        </div> -->
-
-    <div class="container-fluid center-content">
-        <div class="row">
-            <div class="col-xs-1"></div>
-
-            <div class="col-xs-10">
-                <!-- Build Crawl Button Option  -->
-                <img src="assets/images/drinks-drinks.png" width=300>
-
+            <div class="container-fluid center-content">
+                <img id="user-profile-pic" class="img-circle" src="" alt="Generic placeholder image">
+                <h3 id="display_name"></h3>
                 <br>
-                <div class="container-fluid">
+                <p class="display-bio"> Google Biography</p>
+            </div>
+        </div>
+
+        <div class="container-fluid center-content">
+            <div class="row">
+                <div class="col-xs-10 col-xs-offset-1">
+                    <!-- Build Crawl Button Option  -->
+                    <img src="assets/images/drinks-drinks.png" width=300>
+                    <br>
                     <!-- Trigger the modal with a button -->
                     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Build A Crawl!</button>
 
                     <!-- Modal -->
                     <div id="myModal" class="modal fade" role="dialog">
                         <div class="modal-dialog">
-
                             <!-- Modal content-->
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -134,7 +109,6 @@
                                             </form>
                                         </div>
                                     </header>
-
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind.</button>
@@ -144,18 +118,27 @@
                     </div>
                 </div>
                 <br>
-
                 <!-- Modal Ends -->
             </div>
-            <div class="col-xs-1"></div>
+
+
+            <div class="row">
+                <div class="col-xs-10 col-xs-offset-1">
+                    <button type="button" class="btn btn-info btn-lg" href="past-page1.html" class="prof-li">Your Past Crawls!</button>
+                </div>
+            </div>
         </div>
+
     </div>
+    </div>
+    </div>
+
+
+
 
     <div class="container-fluid center-content">
         <div class="row">
-            <div class="col-xs-1"></div>
-
-            <div class="col-xs-10">
+            <div class="col-xs-10 col-xs-offset-1">
                 <button type="button" class="btn btn-info btn-lg" href="find-page1.html" class="prof-li">
                     Find A Crawl!
                 </button>
@@ -167,19 +150,7 @@
 
     <br>
 
-    <div class="container-fluid center-content">
-        <div class="row">
-            <div class="col-xs-1"></div>
 
-            <div class="col-xs-10">
-                <button type="button" class="btn btn-info btn-lg" href="past-page1.html" class="prof-li">
-                    Your Past Crawls!
-                </button>
-            </div>
-
-            <div class="col-xs-1"></div>
-        </div>
-    </div>
 
     <script src="assets/authentication.js"></script>
     <script src="assets/firestore.js"></script>

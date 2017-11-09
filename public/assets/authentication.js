@@ -20,7 +20,7 @@
  const btnLogin = $("#btnLogin");
  const btnSignUp = $("#btnSignUp");
  const btnLogout = $("#btnLogout");
- const currentUser = firebase.auth().currentUser;
+ var currentUser = firebase.auth().currentUser;
 
  // This is the login button.    
  $("#btnLogin").on("click", function() {
@@ -40,21 +40,20 @@
      console.log("clicked");
      $(".userInformation").empty();
      firebase.auth().signOut();
+     currentUser = null;
+
 
  })
 
  firebase.auth().onAuthStateChanged(function(user) {
      if (user) {
-         console.log(user);
-         $("#user_name").html("<h1>" + user.displayName + "</h1>");
-         $("#user_email").html("<p>" + user.email + "</p>")
+         currentUser = user;
          $("#btnLogout").show();
          $("#display_name").html("<h3>" + user.displayName + "</h3>");
          $("#user-profile-pic").attr("src", user.photoURL);
-
          $("#btnSignUp, #btnLogin").hide();
      } else {
-         alert("The user is not verified");
+         $("#userIsLoggedIn").hide();
          $("#btnLogout").hide();
          $("#btnSignUp, #btnLogin").show();
      }
@@ -62,11 +61,6 @@
  // add a realtime listener.
  //  This allows use to use firebase for the authentication. the onAuthStateChanged Method is taking the firebase user and is loging everytime there is some form of state changed within the user
  // E.x. if the user is logged in or logged out.
- function sendEmailVerification() {
-     firebase.auth().currentUser.sendEmailVerification().then(function() {
-         alert('Email Verification Sent!');
-     });
- }
 
  function save_this_shit(successCallBack) {
      console.log("YOU CALLED THE FUNCTION");
@@ -89,9 +83,9 @@
  }
 
 
-$("#the_submit_button").on("click", function (event) {
-    event.preventDefault();
-    save_this_shit(function (docRef) {
-        window.location = window.origin + "/build-page3.html#" + docRef;
-    });
-});
+ $("#the_submit_button").on("click", function(event) {
+     event.preventDefault();
+     save_this_shit(function(docRef) {
+         window.location = window.origin + "/build-page3.html#" + docRef;
+     });
+ });
