@@ -5,6 +5,7 @@ var markersArray = [];
 var numberOfLocations;
 var results;
 var currentTripID;
+var currentTripInfo;
 
 
 // $(window).load(function() {
@@ -12,19 +13,17 @@ var currentTripID;
 // var autocomplete = new google.maps.places.Autocomplete(document.getElementById("search-location"), { types: ['(cities)'] });
 
 
-$("#the_submit_button").on("click", function (event) {
-    event.preventDefault();
-    console.log("Fired at on click")
-    save_this_shit(function (docRef) {
-        window.location = window.origin + "/build-page3.html#" + docRef;
-    });
-});
-
-
 
 function initMap() {
     currentTripID = window.location.hash.substring(1);
-
+    db.collection("trips").doc(currentTripID).get()
+    .then(function(doc) {
+        currentTripInfo = doc.data();
+        searchCrawlLocations();
+    })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+    });
     // Map options
     var options = {
         zoom: 8,
@@ -38,11 +37,10 @@ function initMap() {
     map = new google.maps.Map(document.getElementById('map'), options);
 
     infowindow = new google.maps.InfoWindow();
-
 }
 
 function callback(results, status) {
-    numberOfLocations = parseInt($("#num_ques").val());
+    numberOfLocations = parseInt(currentTripInfo.number);
     if (status === google.maps.places.PlacesServiceStatus.OK) {
         results = randomize(results);
         for (var i = 0; i < numberOfLocations; i++) {
@@ -72,15 +70,12 @@ function createMarker(place) {
 }
 
 function searchCrawlLocations() {
-    console.log("CLICKED");
     for (var i = 0; i < markersArray.length; i++) {
         markersArray[i].setMap(null);
     }
     markersArray = [];
-    var searchType = $("#search-type").val();
-    var searchLocation = $("#search-location").val();
-    console.log(searchType);
-    console.log(searchLocation);
+    var searchType = currentTripInfo.type;
+    var searchLocation = currentTripInfo.main_location;
     var geocoder = new google.maps.Geocoder();
 
     geocoder.geocode({
@@ -90,8 +85,6 @@ function searchCrawlLocations() {
         if (status == google.maps.GeocoderStatus.OK) {
             var latitude = results[0].geometry.location.lat();
             var longitude = results[0].geometry.location.lng();
-            console.log(latitude);
-            console.log(longitude);
 
             var locationSearch = {
                 location: {
@@ -109,10 +102,6 @@ function searchCrawlLocations() {
             map.setZoom(14);
             var service = new google.maps.places.PlacesService(map);
             service.textSearch(locationSearch, callback)
-
-
-
-
         }
     });
 }
