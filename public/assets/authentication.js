@@ -68,17 +68,19 @@
      });
  }
 
- function save_this_shit() {
+ function save_this_shit(successCallBack) {
      console.log("YOU CALLED THE FUNCTION");
      db.collection("trips").add({
              creator: firebase.auth().currentUser.displayName,
              creatorEmail: firebase.auth().currentUser.email,
              type: $("#search-type").val(),
              main_location: $("#search-location").val(),
+             number: $("#num_ques").val()
 
          })
          .then(function(docRef) {
              console.log("Document written with ID: ", docRef.id);
+             successCallBack();
          })
          .catch(function(error) {
              console.error("Error adding document: ", error);
