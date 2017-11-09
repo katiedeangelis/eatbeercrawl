@@ -4,6 +4,7 @@ var infowindow;
 var markersArray = [];
 var numberOfLocations;
 var results;
+var currentTripID;
 
 
 // $(window).load(function() {
@@ -14,14 +15,16 @@ var results;
 $("#the_submit_button").on("click", function (event) {
     event.preventDefault();
     console.log("Fired at on click")
-    save_this_shit(function () {
-        window.location = window.origin + "/build-page3.html";
+    save_this_shit(function (docRef) {
+        window.location = window.origin + "/build-page3.html#" + docRef;
     });
 });
 
 
 
 function initMap() {
+    currentTripID = window.location.hash.substring(1);
+
     // Map options
     var options = {
         zoom: 8,
