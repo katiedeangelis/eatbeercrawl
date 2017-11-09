@@ -87,3 +87,11 @@
          });
 
  }
+
+
+$("#the_submit_button").on("click", function (event) {
+    event.preventDefault();
+    save_this_shit(function (docRef) {
+        window.location = window.origin + "/build-page3.html#" + docRef;
+    });
+});
