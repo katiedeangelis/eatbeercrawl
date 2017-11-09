@@ -1,5 +1,7 @@
 // Here is the key for the Zomato API = cd1577ead710b996f1a2d0ecae1431dd
 var map;
+var directionsService;
+var directionsRenderer;
 var infowindow;
 var markersArray = [];
 var numberOfLocations;
@@ -17,13 +19,13 @@ var currentTripInfo;
 function initMap() {
     currentTripID = window.location.hash.substring(1);
     db.collection("trips").doc(currentTripID).get()
-    .then(function(doc) {
-        currentTripInfo = doc.data();
-        searchCrawlLocations();
-    })
-    .catch(function(error) {
-        console.error("Error adding document: ", error);
-    });
+        .then(function (doc) {
+            currentTripInfo = doc.data();
+            searchCrawlLocations();
+        })
+        .catch(function (error) {
+            console.error("Error adding document: ", error);
+        });
     // Map options
     var options = {
         zoom: 8,
@@ -36,17 +38,45 @@ function initMap() {
     // New map
     map = new google.maps.Map(document.getElementById('map'), options);
 
+    // Initialize directionsService, a DirectionsService object
+    directionsService = new google.maps.DirectionsService;
+    directionsRenderer = new google.maps.DirectionsRenderer({
+        suppressMarkers: true,
+        map: map
+    });
+
     infowindow = new google.maps.InfoWindow();
 }
 
 function callback(results, status) {
+    directionsRenderer.setMap(null);
     numberOfLocations = parseInt(currentTripInfo.number);
     if (status === google.maps.places.PlacesServiceStatus.OK) {
         results = randomize(results);
+
+        var waypoints = [];
         for (var i = 0; i < numberOfLocations; i++) {
             createMarker(results[i]);
+            waypoints.push({
+                location: results[i].formatted_address,
+                stopover: true
+            });
         }
     }
+    directionsService.route({
+        origin: results[0].formatted_address,
+        destination: results[numberOfLocations - 1].formatted_address,
+        optimizeWaypoints: true,
+        waypoints: waypoints,
+        travelMode: 'WALKING'
+    }, function (response, status) {
+        if (status === 'OK') {
+            directionsRenderer.setDirections(response);
+            directionsRenderer.setMap(map);
+        } else {
+            window.alert('Directions request failed due to ' + status);
+        }
+    });
 }
 
 function createMarker(place) {
