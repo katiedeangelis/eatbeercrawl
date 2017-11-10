@@ -7,11 +7,35 @@
      messagingSenderId: "598266543914",
  };
 
+
+
  firebase.initializeApp(config);
  var db = firebase.firestore();
 
- var now = moment();
- console.log(now);
+ db.collection("trips").get().then((querySnapshot) => {
+     querySnapshot.forEach((doc) => {
+         var locations = doc.data().saveplaced;
+         console.log(locations)
+         var div_for_append = $("<div class='col-md-10 col-md-offset-1 tryThis' data='" + doc.id + "'>");
+         div_for_append.append("<h1>" + doc.data().creator + "</h1>");
+         div_for_append.append("<p>" + doc.data().creatorEmail + "</p>");
+         div_for_append.append("<p>" + doc.data().main_location + "</p>");
+         $.each(locations, function(index, place) {
+             div_for_append.append("<li>" + locations[index].name + "</li>");
+         })
+         $("#allOfTheTrips").append(div_for_append);
+     });
+ });
+
+
+ $("#allOfTheTrips").on("click", ".tryThis", function() {
+     console.log(this.data);
+     window.location = window.origin + "/build-page3.html#" + $(this).data;
+ })
+
+
+
+
 
  var provider = new firebase.auth.GoogleAuthProvider();
  //  var git_hub_provider = new firebase.auth.GithubAuthProvider();
@@ -39,12 +63,11 @@
      document.location.href = "/";
      $(".userInformation").empty();
      firebase.auth().signOut();
+ });
 
- })
 
  firebase.auth().onAuthStateChanged(function(user) {
      if (user) {
-         console.log(user);
          $("#user-not-logged-in").hide();
          $("#user_name").html("<h1>" + user.displayName + "</h1>");
          $("#user_email").html("<p>" + user.email + "</p>")
@@ -65,6 +88,8 @@
  function save_this_shit(successCallBack) {
      console.log("YOU CALLED THE FUNCTION");
      db.collection("trips").add({
+             title: $("#crawl-name").val(),
+
              creator: firebase.auth().currentUser.displayName,
              creatorEmail: firebase.auth().currentUser.email,
              type: $("#search-type").val(),
