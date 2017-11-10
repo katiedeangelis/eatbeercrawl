@@ -31,18 +31,16 @@
  $("#btnSignUp").on("click", function() {
      var user = firebase.auth().signUpWithRedirect(provider);
      console.log(user);
-
  })
 
 
 
  $("#btnLogout").on("click", function() {
      console.log("clicked");
+     window.reload();
      $(".userInformation").empty();
      firebase.auth().signOut();
      currentUser = null;
-
-
  })
 
  firebase.auth().onAuthStateChanged(function(user) {
@@ -53,7 +51,7 @@
          $("#user-profile-pic").attr("src", user.photoURL);
          $("#btnSignUp, #btnLogin").hide();
      } else {
-         $("#userIsLoggedIn").hide();
+         $("#userIsLoggedIn").empty();
          $("#btnLogout").hide();
          $("#btnSignUp, #btnLogin").show();
      }
@@ -70,7 +68,6 @@
              type: $("#search-type").val(),
              main_location: $("#search-location").val(),
              number: $("#num_ques").val()
-
          })
          .then(function(docRef) {
              console.log("Document written with ID: ", docRef.id);
