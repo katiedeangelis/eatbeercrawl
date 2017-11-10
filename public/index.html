@@ -100,9 +100,13 @@
                                                     <input id="crawl-name" class="hero-search-filter-form-find" type="text" placeholder="Turn Up Squad">
                                                     <div class="divider">&nbsp;</div>
 
-                                                    <label for="findtext">What Are You Trying to Get Into? : </label>
-                                                    <input id="search-type" class="hero-search-filter-form-find" type="text" placeholder="food, drinks, etc... ">
-                                                    <div class="divider">&nbsp;</div>
+                                                    <label for="findtext">What Are You Trying to Get Into?:</label>
+                                                    <select id="search-type" name="numLocate">
+                                                        <option value="brewery">Bars</option>
+                                                        <option value="nightclub">Nightclubs</option>
+                                                        <option value="attractions">Attractions</option>
+                                                        <option value="pizza">Pizza</option>
+                                                    </select>
 
                                                     <label for="findlocate">Where?</label>
                                                     <input id="search-location" class="hero-search-filter-form-near" type="text" onfocus="geolocate()" />
