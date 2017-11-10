@@ -36,6 +36,7 @@
 
  $("#btnLogout").on("click", function() {
      console.log("clicked");
+     document.location.href = "/";
      $(".userInformation").empty();
      firebase.auth().signOut();
 
@@ -44,8 +45,7 @@
  firebase.auth().onAuthStateChanged(function(user) {
      if (user) {
          console.log(user);
-
-
+         $("#user-not-logged-in").hide();
          $("#user_name").html("<h1>" + user.displayName + "</h1>");
          $("#user_email").html("<p>" + user.email + "</p>")
          $("#btnLogout").show();
@@ -54,7 +54,6 @@
 
          $("#btnSignUp, #btnLogin").hide();
      } else {
-
          $("#user-signed-in").hide();
 
          $("#btnLogout").hide();
