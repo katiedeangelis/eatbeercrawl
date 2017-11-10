@@ -43,6 +43,9 @@
                             <a href="#">
                                 <span class="glyphicon glyphicon-log-in"></span> Login</a>
                         </li>
+                        <li>
+                            <p id="user_email">johnsmith@gmail.com</p>
+                        </li>
                         <li id="btnLogout">
                             <a href="#">Logout</a>
                         </li>
@@ -57,8 +60,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-4 userInformation">
-                <h1 id="user_name"></h1>
-                <p id="user_email"></p>
+                <h1 id="user_name">John Smith</h1>
+                <!-- <p id="user_email"></p> -->
             </div>
         </div>
     </div>
@@ -67,10 +70,10 @@
 
     <div class="jumbotron">
         <div class="container-fluid center-content">
-            <img id="user-profile-pic" class="img-circle" src="" alt="Generic placeholder image">
+            <img id="user-profile-pic" class="img-circle" src="assets/images/blank-profile-picture.png" alt="Generic placeholder image">
             <h3 id="display_name"></h3>
             <br>
-            <p class="display-bio"> Google Biography</p>
+            <!-- <p class="display-bio"> Google Biography</p> -->
         </div>
     </div>
 
@@ -93,9 +96,9 @@
                 <img src="assets/images/drinks-drinks.png" width=300>
 
                 <br>
-                <div class="container-fluid">
+                <div class="container-fluid create-a-crawl-btn">
                     <!-- Trigger the modal with a button -->
-                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Build A Crawl!</button>
+                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Create A Crawl!</button>
 
                     <!-- Modal -->
                     <div id="myModal" class="modal fade" role="dialog">
