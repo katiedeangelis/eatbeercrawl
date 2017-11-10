@@ -31,7 +31,7 @@
  $("#btnSignUp").on("click", function() {
      var user = firebase.auth().signUpWithRedirect(provider);
      console.log(user);
- })
+ });
 
 
 
@@ -56,9 +56,7 @@
          $("#btnSignUp, #btnLogin").show();
      }
  });
- // add a realtime listener.
- //  This allows use to use firebase for the authentication. the onAuthStateChanged Method is taking the firebase user and is loging everytime there is some form of state changed within the user
- // E.x. if the user is logged in or logged out.
+
 
  function save_this_shit(successCallBack) {
      console.log("YOU CALLED THE FUNCTION");
