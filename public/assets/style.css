@@ -43,7 +43,32 @@ h3 {
     z-index: 10;
 }
 
-​
+.jumbotron {
+    margin-top: 3%;
+}
+
+#user-not-logged-in {
+    margin-top: 10%;
+}
+
+.tryThis {
+    width: 20%;
+    height: 260px;
+    background-color: grey;
+    margin: 2% 5%;
+    border-radius: 10px;
+    float: left;
+}
+
+.tryThis p {
+    font-size: 20px;
+}
+
+.tryThis h1 {
+    color: white;
+}
+
+
 /* .jumbotron p {
    margin-bottom: 15px;
    font-size: 12px;
