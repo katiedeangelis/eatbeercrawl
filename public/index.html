@@ -25,26 +25,33 @@
 </head>
 
 <body>
+
+    <!-- This is the nav bar - MAKE A STICKY STICKY -->
     <div class="row">
         <div class="col-xs-12">
             <nav class="navbar navbar-inverse">
 
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="#">Eat. Beer. Crawl</a>
+                        <a class="navbar-brand" href="#"><img src="assets/images/eatbeercrawl-logo-sample-03.png" height=150></a>
                     </div>
                     <ul class="nav navbar-nav navbar-right">
 
-                        <li id="btnSignUp">
+                        <!-- <li id="btnSignUp">
                             <a href="#">
                                 <span class="glyphicon glyphicon-user"></span> Sign Up</a>
-                        </li>
+                        </li> -->
                         <li id="btnLogin">
                             <a href="#">
                                 <span class="glyphicon glyphicon-log-in"></span> Login</a>
                         </li>
+                        <!-- User Name & Email Listed from original index.html -->
                         <li>
-                            <p id="user_email"></p>
+
+                            
+
+                            <p class="userInformation" id="user_email"></p>
+
                         </li>
                         <li id="btnLogout">
                             <a href="#">Logout</a>
@@ -54,6 +61,7 @@
             </nav>
         </div>
     </div>
+
 
     <!-- User Name & Email Listed from original index.html -->
 
@@ -65,6 +73,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- Profile Page starts here... -->
 
@@ -116,15 +125,19 @@
                                         <div class="hero-search-filter-content">
                                             <form class="hero-search-filter-form">
                                                 <div class="col-sm-12">
-                                                    <label for="findtext">Find</label>
-                                                    <input id="search-type" class="hero-search-filter-form-find" type="text" />
+                                                    <label for="nametext">Crawl Name : </label>
+                                                    <input id="crawl-name" class="hero-search-filter-form-find" type="text" placeholder="Turn Up Squad">
                                                     <div class="divider">&nbsp;</div>
 
-                                                    <label for="findlocate">Near</label>
-                                                    <input id="search-location" class="hero-search-filter-form-near" type="text" />
+                                                    <label for="findtext">What Are You Trying to Get Into? : </label>
+                                                    <input id="search-type" class="hero-search-filter-form-find" type="text" placeholder="food, drinks, etc... ">
                                                     <div class="divider">&nbsp;</div>
 
-                                                    <label for="numLocate">Number</label>
+                                                    <label for="findlocate">Around Where Exactly? : (City, State)</label>
+                                                    <input id="search-location" class="hero-search-filter-form-near" type="text" placeholder="Dover, NH"/>
+                                                    <div class="divider">&nbsp;</div>
+
+                                                    <label for="numLocate">Number of Establishments You Wish to Disturb : </label>
                                                     <select id="num_ques" name="numLocate">
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>

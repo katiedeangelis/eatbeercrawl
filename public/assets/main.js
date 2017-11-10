@@ -10,10 +10,6 @@ var currentTripID;
 var currentTripInfo;
 
 
-// $(window).load(function() {
-
-// var autocomplete = new google.maps.places.Autocomplete(document.getElementById("search-location"), { types: ['(cities)'] });
-
 
 
 function initMap() {
@@ -54,8 +50,14 @@ function callback(results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
         results = randomize(results);
 
+        var savedPlaces = [];
         var waypoints = [];
         for (var i = 0; i < numberOfLocations; i++) {
+            savedPlaces.push({
+                location: results[i].formatted_address,
+                name: results[i].name
+            });
+            console.log(savedPlaces);
             createMarker(results[i]);
             waypoints.push({
                 location: results[i].formatted_address,
@@ -63,6 +65,9 @@ function callback(results, status) {
             });
         }
     }
+    // Append/update existing key with origin, way points, and destination place information
+    currentTripInfo.saveplaced = savedPlaces;
+    db.collection("trips").doc(currentTripID).set(currentTripInfo)
     directionsService.route({
         origin: results[0].formatted_address,
         destination: results[numberOfLocations - 1].formatted_address,
@@ -155,4 +160,3 @@ function randomize(array) {
 
     return array;
 }
-// });
