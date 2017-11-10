@@ -33,10 +33,15 @@
                     </div>
                     <ul class="nav navbar-nav navbar-right">
 
+                        <!-- <li id="btnSignUp">
+                            <a href="#">
+                                <span class="glyphicon glyphicon-user"></span> Sign Up</a>
+                        </li> -->
                         <li id="btnLogin">
                             <a href="#">
                                 <span class="glyphicon glyphicon-log-in"></span> Login</a>
                         </li>
+                        <!-- User Name & Email Listed from original index.html -->
                         <li>
 
                             
@@ -83,7 +88,6 @@
     </div>
 
 
-
             <div class="container-fluid center-content">
                 <img id="user-profile-pic" class="img-circle" src="" alt="Generic placeholder image">
                 <h3 id="display_name"></h3>
@@ -91,7 +95,6 @@
                 <p class="display-bio"> Google Biography</p>
             </div>
         </div>
-
 
 
         <div class="container-fluid center-content">
@@ -131,9 +134,11 @@
                                                     <div class="divider">&nbsp;</div>
 
 
-                                                    <label for="findlocate">Where?</label>
+
+                                                    <label for="findlocate">Near</label>
                                                     <input id="search-location" class="hero-search-filter-form-near" type="text" onfocus="geolocate()" />
-                                                    <div class="divider">&nbsp;</div>
+                                                    <div class="divider ">&nbsp;</div>
+                                       
 
                                                     <label for="numLocate">Number of Establishments You Wish to Disturb : </label>
                                                     <select id="num_ques" name="numLocate">
@@ -176,10 +181,17 @@
 
 
 
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAKJqLe1Q9G3f3ev0JB3AwbZJZsN8uI2w&libraries=places&callback=initMap">
+
+
+
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAKJqLe1Q9G3f3ev0JB3AwbZJZsN8uI2w&libraries=places">
     </script>
+    <script src="assets/moment.min.js"></script>
     <script src="assets/main.js"></script>
     <script src="assets/authentication.js"></script>
+
+
     <script src="assets/firestore.js"></script>
 
 
