@@ -20,7 +20,7 @@
  const btnLogin = $("#btnLogin");
  const btnSignUp = $("#btnSignUp");
  const btnLogout = $("#btnLogout");
- const currentUser = firebase.auth().currentUser;
+ var currentUser = firebase.auth().currentUser;
 
  // This is the login button.    
  $("#btnLogin").on("click", function() {
@@ -34,25 +34,24 @@
  });
 
 
+
  $("#btnLogout").on("click", function() {
      console.log("clicked");
+     window.reload();
      $(".userInformation").empty();
      firebase.auth().signOut();
-
+     currentUser = null;
  })
 
  firebase.auth().onAuthStateChanged(function(user) {
      if (user) {
-         console.log(user);
-         $("#user_name").html("<h1>" + user.displayName + "</h1>");
-         $("#user_email").html("<p>" + user.email + "</p>")
+         currentUser = user;
          $("#btnLogout").show();
          $("#display_name").html("<h3>" + user.displayName + "</h3>");
          $("#user-profile-pic").attr("src", user.photoURL);
-
          $("#btnSignUp, #btnLogin").hide();
      } else {
-         alert("The user is not verified");
+         $("#userIsLoggedIn").empty();
          $("#btnLogout").hide();
          $("#btnSignUp, #btnLogin").show();
      }
@@ -67,7 +66,6 @@
              type: $("#search-type").val(),
              main_location: $("#search-location").val(),
              number: $("#num_ques").val()
-
          })
          .then(function(docRef) {
              console.log("Document written with ID: ", docRef.id);
