@@ -10,10 +10,6 @@ var currentTripID;
 var currentTripInfo;
 
 
-// $(window).load(function() {
-
-// var autocomplete = new google.maps.places.Autocomplete(document.getElementById("search-location"), { types: ['(cities)'] });
-
 
 
 function initMap() {
@@ -57,7 +53,11 @@ function callback(results, status) {
         var savedPlaces = [];
         var waypoints = [];
         for (var i = 0; i < numberOfLocations; i++) {
-            savedPlaces.push(results[i].formatted_address);
+            savedPlaces.push({
+                location: results[i].formatted_address,
+                name: results[i].name
+            });
+            console.log(savedPlaces);
             createMarker(results[i]);
             waypoints.push({
                 location: results[i].formatted_address,
@@ -68,13 +68,6 @@ function callback(results, status) {
     // Append/update existing key with origin, way points, and destination place information
     currentTripInfo.saveplaced = savedPlaces;
     db.collection("trips").doc(currentTripID).set(currentTripInfo)
-    .then(function (doc) {
-        currentTripInfo = doc.data();
-        searchCrawlLocations();
-    })
-    .catch(function (error) {
-        console.error("Error adding document: ", error);
-    });
     directionsService.route({
         origin: results[0].formatted_address,
         destination: results[numberOfLocations - 1].formatted_address,
@@ -167,4 +160,3 @@ function randomize(array) {
 
     return array;
 }
-// });
