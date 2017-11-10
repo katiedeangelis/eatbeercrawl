@@ -8,6 +8,12 @@ var numberOfLocations;
 var results;
 var currentTripID;
 var currentTripInfo;
+var placeSearch;
+var autocomplete;
+
+$(document).ready(function() {
+    document.getElementById("search-location").addEventListener("focus", initAutocomplete);
+})
 
 
 
@@ -15,25 +21,23 @@ var currentTripInfo;
 function initMap() {
     currentTripID = window.location.hash.substring(1);
     db.collection("trips").doc(currentTripID).get()
-        .then(function (doc) {
+        .then(function(doc) {
             currentTripInfo = doc.data();
             searchCrawlLocations();
         })
-        .catch(function (error) {
+        .catch(function(error) {
             console.error("Error adding document: ", error);
         });
     // Map options
     var options = {
-        zoom: 8,
-        center: {
-            lat: 43.9654,
-            lng: -70.8227
+            zoom: 8,
+            center: {
+                lat: 43.9654,
+                lng: -70.8227
+            }
         }
-    }
-
-    // New map
+        // New map
     map = new google.maps.Map(document.getElementById('map'), options);
-
     // Initialize directionsService, a DirectionsService object
     directionsService = new google.maps.DirectionsService;
     directionsRenderer = new google.maps.DirectionsRenderer({
@@ -43,6 +47,32 @@ function initMap() {
 
     infowindow = new google.maps.InfoWindow();
 }
+
+function geolocate() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var geolocation = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+            var circle = new google.maps.Circle({
+                center: geolocation,
+                radius: position.coords.accuracy
+            });
+            autocomplete.setBounds(circle.getBounds());
+        });
+    }
+}
+
+function initAutocomplete() {
+    // Create the autocomplete object, restricting the search to geographical
+    // location types.
+    autocomplete = new google.maps.places.Autocomplete(
+        (document.getElementById("search-location")), { types: ['geocode'] });
+
+}
+
+
 
 function callback(results, status) {
     directionsRenderer.setMap(null);
@@ -68,13 +98,20 @@ function callback(results, status) {
     // Append/update existing key with origin, way points, and destination place information
     currentTripInfo.saveplaced = savedPlaces;
     db.collection("trips").doc(currentTripID).set(currentTripInfo)
+        .then(function(doc) {
+            currentTripInfo = doc.data();
+            searchCrawlLocations();
+        })
+        .catch(function(error) {
+            console.error("Error adding document: ", error);
+        });
     directionsService.route({
         origin: results[0].formatted_address,
         destination: results[numberOfLocations - 1].formatted_address,
         optimizeWaypoints: true,
         waypoints: waypoints,
         travelMode: 'WALKING'
-    }, function (response, status) {
+    }, function(response, status) {
         if (status === 'OK') {
             directionsRenderer.setDirections(response);
             directionsRenderer.setMap(map);
@@ -93,12 +130,12 @@ function createMarker(place) {
 
     markersArray.push(marker);
 
-    google.maps.event.addListener(marker, 'click', function () {
+    google.maps.event.addListener(marker, 'click', function() {
         infowindow.setContent(place.name);
         infowindow.open(map, this);
     });
 
-    google.maps.event.addListener(marker, 'click', function () {
+    google.maps.event.addListener(marker, 'click', function() {
         infowindow.setContent(place.name);
         infowindow.open(map, this);
     });
@@ -115,7 +152,7 @@ function searchCrawlLocations() {
 
     geocoder.geocode({
         'address': searchLocation
-    }, function (results, status) {
+    }, function(results, status) {
 
         if (status == google.maps.GeocoderStatus.OK) {
             var latitude = results[0].geometry.location.lat();

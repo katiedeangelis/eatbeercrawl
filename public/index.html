@@ -6,18 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Patrick+Hand" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/firebaseui/2.4.1/firebaseui.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
-
-    <script src="assets/moment.min.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.4.1/firebaseui.css" />
     <link rel="stylesheet" type="text/css" href="assets/style.css">
 
@@ -63,6 +59,7 @@
     </div>
 
 
+
     <!-- User Name & Email Listed from original index.html -->
 
     <div class="container-fluid">
@@ -90,31 +87,32 @@
         <br>
     </div>
 
-    <!-- <div class="row">
-    
-            <div class="col-xs-6">
-                <a href="prof.html" class="prof-li">Profile</a>
+
+            <div class="container-fluid center-content">
+                <img id="user-profile-pic" class="img-circle" src="" alt="Generic placeholder image">
+                <h3 id="display_name"></h3>
+                <br>
+                <p class="display-bio"> Google Biography</p>
             </div>
-            <div class="col-sm-6"></div>
-        </div> -->
+        </div>
 
-    <div class="container-fluid center-content">
-        <div class="row">
-            <div class="col-xs-1"></div>
 
-            <div class="col-xs-10">
-                <!-- Build Crawl Button Option  -->
-                <img src="assets/images/drinks-drinks.png" width=300>
+        <div class="container-fluid center-content">
+            <div class="row">
+                <div class="col-xs-10 col-xs-offset-1">
+                    <!-- Build Crawl Button Option  -->
+                    <img src="assets/images/drinks-drinks.png" width=300>
+                    <br>
 
                 <br>
                 <div class="container-fluid create-a-crawl-btn">
+
                     <!-- Trigger the modal with a button -->
                     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Create A Crawl!</button>
 
                     <!-- Modal -->
                     <div id="myModal" class="modal fade" role="dialog">
                         <div class="modal-dialog">
-
                             <!-- Modal content-->
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -135,9 +133,12 @@
                                                     <input id="search-type" class="hero-search-filter-form-find" type="text" placeholder="food, drinks, etc... ">
                                                     <div class="divider">&nbsp;</div>
 
-                                                    <label for="findlocate">Around Where Exactly? : (City, State)</label>
-                                                    <input id="search-location" class="hero-search-filter-form-near" type="text" placeholder="Dover, NH"/>
-                                                    <div class="divider">&nbsp;</div>
+
+
+                                                    <label for="findlocate">Near</label>
+                                                    <input id="search-location" class="hero-search-filter-form-near" type="text" onfocus="geolocate()" />
+                                                    <div class="divider ">&nbsp;</div>
+                                       
 
                                                     <label for="numLocate">Number of Establishments You Wish to Disturb : </label>
                                                     <select id="num_ques" name="numLocate">
@@ -147,60 +148,53 @@
                                                         <option value="4">4</option>
                                                     </select>
                                                     <br>
-                                                    <button class="btn btn-default button" id="the_submit_button" type="submit">Build My Crawl!</button>
+                                                    <button class="btn btn-default button " id="the_submit_button " type="submit ">Build My Crawl!</button>
                                                 </div>
                                             </form>
                                         </div>
                                     </header>
-
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind.</button>
+                                <div class="modal-footer ">
+                                    <button type="button " class="btn btn-default " data-dismiss="modal ">Nevermind.</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <br>
-
                 <!-- Modal Ends -->
             </div>
-            <div class="col-xs-1"></div>
-        </div>
-    </div>
 
-    <div class="container-fluid center-content">
-        <div class="row">
-            <div class="col-xs-1"></div>
 
-            <div class="col-xs-10">
-                <button type="button" class="btn btn-info btn-lg" href="find-page1.html" class="prof-li">
-                    Find A Crawl!
-                </button>
+            <div class="row ">
+                <div class="col-xs-10 col-xs-offset-1 ">
+                    <button type="button " class="btn btn-info btn-lg " href="past-page1.html" class="prof-li ">Your Past Crawls!</button>
+                </div>
             </div>
-
-            <div class="col-xs-1"></div>
         </div>
+
+    </div>
+    </div>
     </div>
 
-    <br>
 
-    <div class="container-fluid center-content">
-        <div class="row">
-            <div class="col-xs-1"></div>
 
-            <div class="col-xs-10">
-                <button type="button" class="btn btn-info btn-lg" href="past-page1.html" class="prof-li">
-                    Your Past Crawls!
-                </button>
-            </div>
 
-            <div class="col-xs-1"></div>
-        </div>
-    </div>
 
+
+
+
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAKJqLe1Q9G3f3ev0JB3AwbZJZsN8uI2w&libraries=places">
+    </script>
+    <script src="assets/moment.min.js"></script>
+    <script src="assets/main.js"></script>
     <script src="assets/authentication.js"></script>
+
+
     <script src="assets/firestore.js"></script>
+
+
 </body>
 
 </html>
