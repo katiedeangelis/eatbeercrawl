@@ -28,10 +28,11 @@
  });
 
 
- $("#allOfTheTrips").on("click", ".tryThis", function() {
-     console.log(this.data);
-     window.location = window.origin + "/build-page3.html#" + $(this).data;
- })
+ //  $("#allOfTheTrips").on("click", ".tryThis", function() {
+ //     //  The redirect works,
+ //     //  console.log(this.data);
+ //     //  window.location = window.origin + "/build-page3.html#" + $(this).data;
+ //  })
 
 
 
