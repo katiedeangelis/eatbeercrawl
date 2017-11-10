@@ -21,23 +21,33 @@
 </head>
 
 <body>
+
+    <!-- This is the nav bar - MAKE A STICKY STICKY -->
     <div class="row">
         <div class="col-xs-12">
-            <nav class="navbar navbar-inverse">
+            <nav class="navbar navbar-inverse navbar-fixed-top">
 
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="#">Eat. Beer. Crawl</a>
+                        <a class="navbar-left" href="index.html"><img alt="Brand" src="assets/images/eatbeercrawl-logo-notext-04.png" width=100></a>
                     </div>
                     <ul class="nav navbar-nav navbar-right">
 
-                        <li id="btnSignUp">
+                        <!-- <li id="btnSignUp">
                             <a href="#">
                                 <span class="glyphicon glyphicon-user"></span> Sign Up</a>
-                        </li>
+                        </li> -->
                         <li id="btnLogin">
                             <a href="#">
                                 <span class="glyphicon glyphicon-log-in"></span> Login</a>
+                        </li>
+                        <!-- User Name & Email Listed from original index.html -->
+                        <li>
+
+                            
+
+                            <p class="userInformation" id="user_email"></p>
+
                         </li>
                         <li id="btnLogout">
                             <a href="#">Logout</a>
@@ -50,9 +60,33 @@
 
 
 
-    <div id="userIsLoggedIn">
+    <!-- User Name & Email Listed from original index.html -->
 
-        <div class="jumbotron">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4 userInformation">
+                <h1 id="user_name"></h1>
+                <!-- <p id="user_email"></p> -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Profile Page starts here... -->
+
+    <div class="jumbotron">
+        <div class="container-fluid center-content">
+            <img id="user-profile-pic" class="img-circle" src="assets/images/blank-profile-picture.png" alt="Generic placeholder image">
+            <h3 id="display_name"></h3>
+            <br>
+            <!-- <p class="display-bio"> Google Biography</p> -->
+        </div>
+    </div>
+
+    <div class="row">
+        <br>
+    </div>
+
 
             <div class="container-fluid center-content">
                 <img id="user-profile-pic" class="img-circle" src="" alt="Generic placeholder image">
@@ -62,14 +96,19 @@
             </div>
         </div>
 
+
         <div class="container-fluid center-content">
             <div class="row">
                 <div class="col-xs-10 col-xs-offset-1">
                     <!-- Build Crawl Button Option  -->
                     <img src="assets/images/drinks-drinks.png" width=300>
                     <br>
+
+                <br>
+                <div class="container-fluid create-a-crawl-btn">
+
                     <!-- Trigger the modal with a button -->
-                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Build A Crawl!</button>
+                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Create A Crawl!</button>
 
                     <!-- Modal -->
                     <div id="myModal" class="modal fade" role="dialog">
@@ -86,23 +125,27 @@
                                         <div class="hero-search-filter-content">
                                             <form class="hero-search-filter-form">
                                                 <div class="col-sm-12">
-                                                    <label for="findtext">Find</label>
-                                                    <input id="search-type" class="hero-search-filter-form-find" type="text" />
+                                                    <label for="nametext">Crawl Name : </label>
+                                                    <input id="crawl-name" class="hero-search-filter-form-find" type="text" placeholder="Turn Up Squad">
                                                     <div class="divider">&nbsp;</div>
+
+                                                    <label for="findtext">What Are You Trying to Get Into? : </label>
+                                                    <input id="search-type" class="hero-search-filter-form-find" type="text" placeholder="food, drinks, etc... ">
+                                                    <div class="divider">&nbsp;</div>
+
 
 
                                                     <label for="findlocate">Near</label>
                                                     <input id="search-location" class="hero-search-filter-form-near" type="text" onfocus="geolocate()" />
                                                     <div class="divider ">&nbsp;</div>
-                                                    <div id="mapper "></div>
+                                       
 
-
-                                                    <label for="numLocate ">Number</label>
-                                                    <select id="num_ques " name="numLocate ">
-                                                        <option value="1 ">1</option>
-                                                        <option value="2 ">2</option>
-                                                        <option value="3 ">3</option>
-                                                        <option value="4 ">4</option>
+                                                    <label for="numLocate">Number of Establishments You Wish to Disturb : </label>
+                                                    <select id="num_ques" name="numLocate">
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
                                                     </select>
                                                     <br>
                                                     <button class="btn btn-default button " id="the_submit_button " type="submit ">Build My Crawl!</button>

@@ -13,8 +13,9 @@ var autocomplete;
 
 $(document).ready(function() {
     document.getElementById("search-location").addEventListener("focus", initAutocomplete);
-
 })
+
+
 
 
 function initMap() {
@@ -82,7 +83,11 @@ function callback(results, status) {
         var savedPlaces = [];
         var waypoints = [];
         for (var i = 0; i < numberOfLocations; i++) {
-            savedPlaces.push(results[i].formatted_address);
+            savedPlaces.push({
+                location: results[i].formatted_address,
+                name: results[i].name
+            });
+            console.log(savedPlaces);
             createMarker(results[i]);
             waypoints.push({
                 location: results[i].formatted_address,
@@ -192,4 +197,3 @@ function randomize(array) {
 
     return array;
 }
-// });
