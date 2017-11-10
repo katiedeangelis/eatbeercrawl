@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Patrick+Hand" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/firebaseui/2.4.1/firebaseui.js"></script>
@@ -24,6 +22,35 @@
 </head>
 
 <body>
+
+    <!-- This is the nav bar - MAKE A STICKY STICKY -->
+    <div class="row">
+        <div class="col-xs-12">
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-left" href="index.html"><img alt="Brand" src="assets/images/eatbeercrawl-logo-notext-04.png" width=100></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li id="btnLogin">
+                            <a href="#">
+                                <span class="glyphicon glyphicon-log-in"></span> Login</a>
+                        </li>
+                        <li>
+                            <p class="userInformation" id="user_email">johnsmith@gmail.com</p>
+                        </li>
+                        <li id="btnLogout">
+                            <a href="#">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+
     <div class="jumbotron">
         <h1 class="text-center">Let's Get Ready To Crawl</h1>
         <h2 class="text-center" id="crawl-name">"name of crawl"</h2>
@@ -62,8 +89,7 @@
                     <div class="timeline-content right">
                         <p class="timeline-content-date">This is an Option</h2>
                             <span class="timeline-content-month">1</span>
-                            <p>ZURB style guide was solidified and named Foundation. It is being used internally on all client
-                                projects and ZURB sites and apps.</p>
+                            <p>ZURB style guide was solidified and named Foundation. It is being used internally on all client projects and ZURB sites and apps.</p>
                     </div>
                 </div>
 
@@ -75,8 +101,8 @@
                         <p class="timeline-content-date">This is an Option</h2>
                             <span class="timeline-content-month">2</span>
                             <p>
-                                <a href="http://foundation.zurb.com/sites/docs/v/2.2.1/" target="_blank">Foundation 2.0</a> is released to the public as an open source project! Foundation is the
-                                first responsive front-end framework and helps lead the charge for RWD across the web.
+                                <a href="http://foundation.zurb.com/sites/docs/v/2.2.1/" target="_blank">Foundation 2.0</a> is released to the public as an open source project! Foundation is the first responsive front-end framework and helps lead the
+                                charge for RWD across the web.
                             </p>
                     </div>
                 </div>
@@ -89,8 +115,7 @@
                         <p class="timeline-content-date">This is an Option</h2>
                             <span class="timeline-content-month">3</span>
                             <p>
-                                <a href="http://foundation.zurb.com/sites/docs/v/3.2.5/" target="_blank">Foundation 3.0</a> is released! This version comes with Sass and is the first framework to
-                                use mixins and Sass partials.
+                                <a href="http://foundation.zurb.com/sites/docs/v/3.2.5/" target="_blank">Foundation 3.0</a> is released! This version comes with Sass and is the first framework to use mixins and Sass partials.
                             </p>
                     </div>
                 </div>
@@ -105,8 +130,7 @@
                         </p>
                         <p>This year saw not one, but three releases to Foundation!
                             <a href="http://foundation.zurb.com/sites/docs/v/4.3.2/index.html" target="_blank">Version 4</a> went
-                            <a href="http://zurb.com/word/mobile-first" target="_blank">mobile first</a>, added many new components, and came with a visual update. Our responsive image
-                            plugin called
+                            <a href="http://zurb.com/word/mobile-first" target="_blank">mobile first</a>, added many new components, and came with a visual update. Our responsive image plugin called
                             <a href="http://foundation.zurb.com/sites/docs/v/4.3.2/components/interchange.html" target="_blank">Interchange</a> was added to Foundation to make sites built with it load even faster.</p>
                     </div>
                 </div>

@@ -44,6 +44,8 @@
  firebase.auth().onAuthStateChanged(function(user) {
      if (user) {
          console.log(user);
+
+
          $("#user_name").html("<h1>" + user.displayName + "</h1>");
          $("#user_email").html("<p>" + user.email + "</p>")
          $("#btnLogout").show();
@@ -52,7 +54,9 @@
 
          $("#btnSignUp, #btnLogin").hide();
      } else {
-         alert("The user is not verified");
+
+         $("#user-signed-in").hide();
+
          $("#btnLogout").hide();
          $("#btnSignUp, #btnLogin").show();
      }

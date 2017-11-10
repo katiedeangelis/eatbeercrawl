@@ -35,8 +35,6 @@ function geolocate() {
 }
 
 
-
-
 function initMap() {
     currentTripID = window.location.hash.substring(1);
     db.collection("trips").doc(currentTripID).get()

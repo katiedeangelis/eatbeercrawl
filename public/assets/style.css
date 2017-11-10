@@ -43,6 +43,10 @@ h3 {
     z-index: 10;
 }
 
+.jumbotron {
+    margin-top: 3%;
+}
+
 ​
 /* .jumbotron p {
    margin-bottom: 15px;
