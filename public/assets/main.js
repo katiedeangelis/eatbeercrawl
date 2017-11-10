@@ -9,17 +9,42 @@ var results;
 var currentTripID;
 var currentTripInfo;
 
+document.getElementById("search-location").addEventListener("focus", initAutocomplete);
+
+function initAutocomplete() {
+    autocomplete = new google.maps.places.Autocomplete(
+        (document.getElementById("search-location")), { types: ['geocode'] });
+}
+
+// Bias the autocomplete object to the user's geographical location,
+// as supplied by the browser's 'navigator.geolocation' object.
+function geolocate() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var geolocation = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+            var circle = new google.maps.Circle({
+                center: geolocation,
+                radius: position.coords.accuracy
+            });
+            autocomplete.setBounds(circle.getBounds());
+        });
+    }
+}
+
 
 
 
 function initMap() {
     currentTripID = window.location.hash.substring(1);
     db.collection("trips").doc(currentTripID).get()
-        .then(function (doc) {
+        .then(function(doc) {
             currentTripInfo = doc.data();
             searchCrawlLocations();
         })
-        .catch(function (error) {
+        .catch(function(error) {
             console.error("Error adding document: ", error);
         });
     // Map options
@@ -74,7 +99,7 @@ function callback(results, status) {
         optimizeWaypoints: true,
         waypoints: waypoints,
         travelMode: 'WALKING'
-    }, function (response, status) {
+    }, function(response, status) {
         if (status === 'OK') {
             directionsRenderer.setDirections(response);
             directionsRenderer.setMap(map);
@@ -93,12 +118,12 @@ function createMarker(place) {
 
     markersArray.push(marker);
 
-    google.maps.event.addListener(marker, 'click', function () {
+    google.maps.event.addListener(marker, 'click', function() {
         infowindow.setContent(place.name);
         infowindow.open(map, this);
     });
 
-    google.maps.event.addListener(marker, 'click', function () {
+    google.maps.event.addListener(marker, 'click', function() {
         infowindow.setContent(place.name);
         infowindow.open(map, this);
     });
@@ -115,7 +140,7 @@ function searchCrawlLocations() {
 
     geocoder.geocode({
         'address': searchLocation
-    }, function (results, status) {
+    }, function(results, status) {
 
         if (status == google.maps.GeocoderStatus.OK) {
             var latitude = results[0].geometry.location.lat();

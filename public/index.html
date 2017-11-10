@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Patrick+Hand" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/firebaseui/2.4.1/firebaseui.js"></script>
@@ -37,15 +35,10 @@
                     </div>
                     <ul class="nav navbar-nav navbar-right">
 
-                        <!-- <li id="btnSignUp">
-                            <a href="#">
-                                <span class="glyphicon glyphicon-user"></span> Sign Up</a>
-                        </li> -->
                         <li id="btnLogin">
                             <a href="#">
                                 <span class="glyphicon glyphicon-log-in"></span> Login</a>
                         </li>
-                        <!-- User Name & Email Listed from original index.html -->
                         <li>
                             <p class="userInformation" id="user_email">johnsmith@gmail.com</p>
                         </li>
@@ -73,14 +66,6 @@
     <div class="row">
         <br>
     </div>
-
-    <!-- <div class="row">
-    
-            <div class="col-xs-6">
-                <a href="prof.html" class="prof-li">Profile</a>
-            </div>
-            <div class="col-sm-6"></div>
-        </div> -->
 
     <div class="container-fluid center-content">
         <div class="row">
@@ -119,8 +104,8 @@
                                                     <input id="search-type" class="hero-search-filter-form-find" type="text" placeholder="food, drinks, etc... ">
                                                     <div class="divider">&nbsp;</div>
 
-                                                    <label for="findlocate">Around Where Exactly? : (City, State)</label>
-                                                    <input id="search-location" class="hero-search-filter-form-near" type="text" placeholder="Dover, NH"/>
+                                                    <label for="findlocate">Where?</label>
+                                                    <input id="search-location" class="hero-search-filter-form-near" type="text" onfocus="geolocate()" />
                                                     <div class="divider">&nbsp;</div>
 
                                                     <label for="numLocate">Number of Establishments You Wish to Disturb : </label>
@@ -183,6 +168,10 @@
         </div>
     </div>
 
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAKJqLe1Q9G3f3ev0JB3AwbZJZsN8uI2w&libraries=places&callback=initMap">
+    </script>
+    <script src="assets/main.js"></script>
     <script src="assets/authentication.js"></script>
     <script src="assets/firestore.js"></script>
 </body>
