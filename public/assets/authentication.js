@@ -14,9 +14,8 @@
 
  db.collection("trips").get().then((querySnapshot) => {
      querySnapshot.forEach((doc) => {
-         if (doc.data().savedTrip && firebase.auth().currentUser.displayName == doc.data().creator) {
+         if (firebase.auth().currentUser != null && firebase.auth().currentUser.displayName == doc.data().creator && doc.data().savedTrip) {
              var locations = doc.data().savedPlaces;
-             console.log(locations)
              var div_for_append = $("<div class='col-md-10 col-md-offset-1 tryThis trip-tile' data-trip-id='" + doc.id + "'>");
              div_for_append.append("<h1>" + doc.data().creator + "</h1>");
              div_for_append.append("<p>" + doc.data().creatorEmail + "</p>");
@@ -62,12 +61,10 @@
 
  $("#btnSignUp").on("click", function () {
      var user = firebase.auth().signUpWithRedirect(provider);
-     console.log(user);
  });
 
 
  $("#btnLogout").on("click", function () {
-     console.log("clicked");
      document.location.href = "/";
      $(".userInformation").empty();
      firebase.auth().signOut();
@@ -94,7 +91,6 @@
 
 
  function save_this_shit(successCallBack) {
-     console.log("YOU CALLED THE FUNCTION");
      db.collection("trips").add({
              title: $("#crawl-name").val(),
 
@@ -106,7 +102,6 @@
 
          })
          .then(function (docRef) {
-             console.log("Document written with ID: ", docRef.id);
              successCallBack(docRef.id);
          })
          .catch(function (error) {
