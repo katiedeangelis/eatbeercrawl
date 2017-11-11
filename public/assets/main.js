@@ -93,7 +93,7 @@ function callback(results, status) {
         }
     }
     // Append/update existing key with origin, way points, and destination place information
-    currentTripInfo.savePlaces = savedPlaces;
+    currentTripInfo.savedPlaces = savedPlaces;
     currentTripInfo.savedTrip = true;
     currentTripInfo.origin = results[0].formatted_address
     currentTripInfo.destination = results[numberOfLocations - 1].formatted_address
@@ -112,8 +112,8 @@ function writePlaceDetail(response, status) {
         directionsRenderer.setDirections(response);
         directionsRenderer.setMap(map);
 
-        for (var i = 0; i < currentTripInfo.saveplaced.length; i++) {
-            var currentPlace = currentTripInfo.saveplaced[i];
+        for (var i = 0; i < currentTripInfo.savedPlaces.length; i++) {
+            var currentPlace = currentTripInfo.savedPlaces[i];
 
             var service = new google.maps.places.PlacesService(map);
 
@@ -210,16 +210,16 @@ function searchCrawlLocations() {
 function loadSavedCrawlLocations() {
 
     var waypoints = [];
-    for (var i = 0; i < currentTripInfo.savePlaces.length; i++) {
-        console.log(currentTripInfo.savePlaces[i]);
+    for (var i = 0; i < currentTripInfo.savedPlaces.length; i++) {
+        console.log(currentTripInfo.savedPlaces[i]);
         waypoints.push({
-            location: currentTripInfo.savePlaces[i].address,
+            location: currentTripInfo.savedPlaces[i].address,
             stopover: true
         });
         var service = new google.maps.places.PlacesService(map);
 
         service.getDetails({
-            placeId: currentTripInfo.savePlaces[i].placeID
+            placeId: currentTripInfo.savedPlaces[i].placeID
         }, function (place, status) {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 createMarker(place);
