@@ -234,36 +234,6 @@ function loadSavedCrawlLocations() {
         waypoints: waypoints,
         travelMode: 'WALKING'
     }, writePlaceDetail);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 function randomize(array) {
