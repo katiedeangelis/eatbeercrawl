@@ -96,7 +96,10 @@ body {
 .modal-body {
   background-color: gray;
 }
-
+a:hover {
+  background-color: rgb(56, 56, 56);
+  color: white;
+}
 .modalbtn {
   background-color: black;
   color: white;
@@ -502,6 +505,7 @@ input:checked+.slider:before {
 .timeline .timeline-item .timeline-content p {
   color: black;
   font-size: 18px;
+  font-weight: bold;
 }
 
 .timeline .timeline-item .timeline-content p {
@@ -579,4 +583,14 @@ input:checked+.slider:before {
     }
    
   }
+ 
+}
+@media screen and (max-width: 768px) {
+ .nav {
+   height: 30px;
+ }
+ .jumbotron {
+   margin-top: 120px;
+ }
+ 
 }
