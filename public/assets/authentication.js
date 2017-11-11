@@ -14,17 +14,23 @@
 
  db.collection("trips").get().then((querySnapshot) => {
      querySnapshot.forEach((doc) => {
-         var locations = doc.data().saveplaced;
-         console.log(locations)
-         var div_for_append = $("<div class='col-md-10 col-md-offset-1 tryThis' data='" + doc.id + "'>");
-         div_for_append.append("<h1>" + doc.data().creator + "</h1>");
-         div_for_append.append("<p>" + doc.data().creatorEmail + "</p>");
-         div_for_append.append("<p>" + doc.data().main_location + "</p>");
-         $.each(locations, function(index, place) {
-             div_for_append.append("<li>" + locations[index].name + "</li>");
-         })
-         $("#allOfTheTrips").append(div_for_append);
+         if (firebase.auth().currentUser != null && firebase.auth().currentUser.displayName == doc.data().creator && doc.data().savedTrip) {
+             var locations = doc.data().savedPlaces;
+             var div_for_append = $("<div class='col-md-10 col-md-offset-1 tryThis trip-tile' data-trip-id='" + doc.id + "'>");
+             div_for_append.append("<h1>" + doc.data().creator + "</h1>");
+             div_for_append.append("<p>" + doc.data().creatorEmail + "</p>");
+             div_for_append.append("<p><strong>" + doc.data().title + "</strong></p>");
+             div_for_append.append("<p>" + doc.data().main_location + "</p>");
+             $.each(locations, function (index, place) {
+                 div_for_append.append("<li>" + locations[index].name + "</li>");
+             })
+             $("#allOfTheTrips").append(div_for_append);
+         }
      });
+
+     $(".trip-tile").click(function (e) {
+         window.location = window.origin + "/build-page3.html#" + $(this).data("tripId");
+     })
  });
 
 
@@ -48,26 +54,24 @@
  const currentUser = firebase.auth().currentUser;
 
  // This is the login button.    
- $("#btnLogin").on("click", function() {
+ $("#btnLogin").on("click", function () {
      var user = firebase.auth().signInWithRedirect(provider);
      sendUserToFirebase(user);
  })
 
- $("#btnSignUp").on("click", function() {
+ $("#btnSignUp").on("click", function () {
      var user = firebase.auth().signUpWithRedirect(provider);
-     console.log(user);
  });
 
 
- $("#btnLogout").on("click", function() {
-     console.log("clicked");
+ $("#btnLogout").on("click", function () {
      document.location.href = "/";
      $(".userInformation").empty();
      firebase.auth().signOut();
  });
 
 
- firebase.auth().onAuthStateChanged(function(user) {
+ firebase.auth().onAuthStateChanged(function (user) {
      if (user) {
          $("#user-not-logged-in").hide();
          $("#user_name").html("<h1>" + user.displayName + "</h1>");
@@ -87,7 +91,6 @@
 
 
  function save_this_shit(successCallBack) {
-     console.log("YOU CALLED THE FUNCTION");
      db.collection("trips").add({
              title: $("#crawl-name").val(),
 
@@ -98,20 +101,19 @@
              number: $("#num_ques").val()
 
          })
-         .then(function(docRef) {
-             console.log("Document written with ID: ", docRef.id);
+         .then(function (docRef) {
              successCallBack(docRef.id);
          })
-         .catch(function(error) {
+         .catch(function (error) {
              console.error("Error adding document: ", error);
          });
 
  }
 
 
- $("#the_submit_button").on("click", function(event) {
+ $("#the_submit_button").on("click", function (event) {
      event.preventDefault();
-     save_this_shit(function(docRef) {
+     save_this_shit(function (docRef) {
          window.location = window.origin + "/build-page3.html#" + docRef;
      });
  });

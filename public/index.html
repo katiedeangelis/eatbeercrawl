@@ -43,7 +43,15 @@
                                 <span class="glyphicon glyphicon-log-in"></span>Login</a>
                         </li>
                         <li>
+
+
+
+
                             <p class="userInformation" id="user_email"></p>
+
+
+
+
                         </li>
                         <li id="btnLogout">
                             <a href="#">Logout</a>
@@ -54,6 +62,16 @@
         </div>
     </div>
 
+    <!-- User Name & Email Listed from original index.html -->
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4 userInformation">
+                <h1 id="user_name"></h1>
+                <!-- <p id="user_email"></p> -->
+            </div>
+        </div>
+    </div>
 
     <!-- Profile Page starts here... -->
 
@@ -84,7 +102,7 @@
                     <br>
                     <div class="container-fluid create-a-crawl-btn">
                         <!-- Trigger the modal with a button -->
-                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Create A Crawl!</button>
+                        <button type="button" class="modalbtn btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Create A Crawl!</button>
 
                         <!-- Modal -->
                         <div id="myModal" class="modal fade" role="dialog">
@@ -108,7 +126,10 @@
 
                                                         <label for="findtext">What Are You Trying to Get Into?:</label>
                                                         <select id="search-type" name="numLocate">
-                                                            <option value="brewery">Bars</option>
+
+
+                                                            <option value="bars">Bars</option>
+                                                            <option value="brewery">Breweries</option>
                                                             <option value="nightclub">Nightclubs</option>
                                                             <option value="attractions">Attractions</option>
                                                             <option value="pizza">Pizza</option>
@@ -168,14 +189,12 @@
     </div>
 
 
-
-
-
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAKJqLe1Q9G3f3ev0JB3AwbZJZsN8uI2w&libraries=places&callback=initMap">
-    </script>
     <script src="assets/main.js"></script>
     <script src="assets/authentication.js"></script>
     <script src="assets/firestore.js"></script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAKJqLe1Q9G3f3ev0JB3AwbZJZsN8uI2w&libraries=places&callback=initMap">
+    </script>
 </body>
 
 </html>
