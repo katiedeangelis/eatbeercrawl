@@ -820,5 +820,8 @@ input:checked+.slider:before {
   #user_email {
     float: right;
   }
+  .tryThis {
+    width: 90%;
+  }
   
 }
