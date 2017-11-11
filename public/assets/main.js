@@ -43,6 +43,7 @@ function initMap() {
     db.collection("trips").doc(currentTripID).get()
         .then(function (doc) {
             currentTripInfo = doc.data();
+            $("#crawl-name").text(currentTripInfo.title)
             searchCrawlLocations();
         })
         .catch(function (error) {
@@ -81,9 +82,9 @@ function callback(results, status) {
         for (var i = 0; i < numberOfLocations; i++) {
             savedPlaces.push({
                 placeID: results[i].place_id,
-                name: results[i].name
+                name: results[i].name,
+                address: results[i].formatted_address
             });
-            console.log(savedPlaces);
             createMarker(results[i]);
             waypoints.push({
                 location: results[i].formatted_address,
@@ -92,11 +93,14 @@ function callback(results, status) {
         }
     }
     // Append/update existing key with origin, way points, and destination place information
-    currentTripInfo.saveplaced = savedPlaces;
+    currentTripInfo.savePlaces = savedPlaces;
+    currentTripInfo.savedTrip = true;
+    currentTripInfo.origin = results[0].formatted_address
+    currentTripInfo.destination = results[numberOfLocations - 1].formatted_address
     db.collection("trips").doc(currentTripID).set(currentTripInfo)
     directionsService.route({
-        origin: results[0].formatted_address,
-        destination: results[numberOfLocations - 1].formatted_address,
+        origin: currentTripInfo.origin,
+        destination: currentTripInfo.destination,
         optimizeWaypoints: true,
         waypoints: waypoints,
         travelMode: 'WALKING'
@@ -116,19 +120,22 @@ function writePlaceDetail(response, status) {
             service.getDetails({
                 placeId: currentPlace.placeID
             }, function (place, status) {
+                console.log(place);
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
                     var timelineItem = $("<div class='timeline-item'></div>");
                     var timelineIcon = $("<div class='timeline-icon'></div>");
                     var timelineContent = $("<div class='timeline-content'></div>");
                     var timelineContentDate = $("<p class='timeline-content-date'>" + place.name + "</p>");
-                    var timelineContentMonth = $("<span class='timeline-content-month'>" + place.formatted_phone_number + "</span>");
-                    var timelineContentRating = $("<p>" + place.rating + "</p>");
+                    var timelineContentMonth = $("<span class='timeline-content-month'> ( " + place.rating + "/5 )</span>");
+                    var timelineContentPhone = $("<p>" + place.formatted_phone_number + "</p>");
+                    var timelineContentAddress = $("<p>" + place.formatted_address + "</p>");
 
                     $(timelineItem).append(timelineIcon);
                     $(timelineItem).append(timelineContent);
                     $(timelineContent).append(timelineContentDate);
                     $(timelineContentDate).append(timelineContentMonth);
-                    $(timelineContent).append(timelineContentRating);
+                    $(timelineContent).append(timelineContentPhone);
+                    $(timelineContent).append(timelineContentAddress);
                     $(".timeline").append(timelineItem);
                 }
             });
@@ -190,10 +197,73 @@ function searchCrawlLocations() {
                 lng: longitude
             });
             map.setZoom(14);
-            var service = new google.maps.places.PlacesService(map);
-            service.textSearch(locationSearch, callback)
+            if (currentTripInfo.savedTrip) {
+                loadSavedCrawlLocations();
+            } else {
+                var service = new google.maps.places.PlacesService(map);
+                service.textSearch(locationSearch, callback)
+            }
         }
     });
+}
+
+function loadSavedCrawlLocations() {
+
+    var waypoints = [];
+    for (var i = 0; i < currentTripInfo.savePlaces.length; i++) {
+        console.log(currentTripInfo.savePlaces[i]);
+        waypoints.push({
+            location: currentTripInfo.savePlaces[i].address,
+            stopover: true
+        });
+        var service = new google.maps.places.PlacesService(map);
+
+        service.getDetails({
+            placeId: currentTripInfo.savePlaces[i].placeID
+        }, function (place, status) {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                createMarker(place);
+
+            }
+        });
+    }
+    directionsService.route({
+        origin: currentTripInfo.origin,
+        destination: currentTripInfo.destination,
+        optimizeWaypoints: true,
+        waypoints: waypoints,
+        travelMode: 'WALKING'
+    }, writePlaceDetail);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 function randomize(array) {
