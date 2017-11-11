@@ -40,7 +40,10 @@ function geolocate() {
 
 function initMap() {
     currentTripID = window.location.hash.substring(1);
-    db.collection("trips").doc(currentTripID).get()
+
+    // If there is an id then load the trip
+    if (currentTripID != null && currentTripID != "") {
+        db.collection("trips").doc(currentTripID).get()
         .then(function (doc) {
             currentTripInfo = doc.data();
             $("#crawl-name").text(currentTripInfo.title)
@@ -49,26 +52,28 @@ function initMap() {
         .catch(function (error) {
             console.error("Error adding document: ", error);
         });
-    // Map options
-    var options = {
-        zoom: 8,
-        center: {
-            lat: 43.9654,
-            lng: -70.8227
+    
+        // Map options
+        var options = {
+            zoom: 8,
+            center: {
+                lat: 43.9654,
+                lng: -70.8227
+            }
         }
+
+        // New map
+        map = new google.maps.Map(document.getElementById('map'), options);
+
+        // Initialize directionsService, a DirectionsService object
+        directionsService = new google.maps.DirectionsService;
+        directionsRenderer = new google.maps.DirectionsRenderer({
+            suppressMarkers: true,
+            map: map
+        });
+
+        infowindow = new google.maps.InfoWindow();
     }
-
-    // New map
-    map = new google.maps.Map(document.getElementById('map'), options);
-
-    // Initialize directionsService, a DirectionsService object
-    directionsService = new google.maps.DirectionsService;
-    directionsRenderer = new google.maps.DirectionsRenderer({
-        suppressMarkers: true,
-        map: map
-    });
-
-    infowindow = new google.maps.InfoWindow();
 }
 
 function callback(results, status) {
@@ -120,7 +125,6 @@ function writePlaceDetail(response, status) {
             service.getDetails({
                 placeId: currentPlace.placeID
             }, function (place, status) {
-                console.log(place);
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
                     var timelineItem = $("<div class='timeline-item'></div>");
                     var timelineIcon = $("<div class='timeline-icon'></div>");
@@ -211,7 +215,6 @@ function loadSavedCrawlLocations() {
 
     var waypoints = [];
     for (var i = 0; i < currentTripInfo.savedPlaces.length; i++) {
-        console.log(currentTripInfo.savedPlaces[i]);
         waypoints.push({
             location: currentTripInfo.savedPlaces[i].address,
             stopover: true

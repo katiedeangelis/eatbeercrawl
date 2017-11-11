@@ -118,6 +118,8 @@
 
                                                         <label for="findtext">What Are You Trying to Get Into?:</label>
                                                         <select id="search-type" name="numLocate">
+
+
                                                             <option value="bars">Bars</option>
                                                             <option value="brewery">Breweries</option>
                                                             <option value="nightclub">Nightclubs</option>
@@ -165,19 +167,26 @@
 
 
     <div id="user-not-logged-in text-center">
-        <h1 class="text-center">You picked the city, we can help with the adventure</h1>
-        <!-- <button id="btnLogin" class="btn btn-primary">Login</button> -->
+        <div class="row">
+            <div class="col-xs-1"></div>
+
+            <div class="col-xs-10">
+                <img src="assets/images/eatbeercrawl-logo-sample-03.png">
+                <br>
+                <div class="container" id="preinfo-text">
+                    <h1 class="text-center">You pick the city. We build the quest.</h1>
+                </div>
+            </div>
+        </div>
     </div>
 
 
-
-
-
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAKJqLe1Q9G3f3ev0JB3AwbZJZsN8uI2w&libraries=places&callback=initMap">
-    </script>
     <script src="assets/main.js"></script>
     <script src="assets/authentication.js"></script>
     <script src="assets/firestore.js"></script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAKJqLe1Q9G3f3ev0JB3AwbZJZsN8uI2w&libraries=places&callback=initMap">
+    </script>
 </body>
 
 </html>

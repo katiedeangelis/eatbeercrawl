@@ -43,6 +43,13 @@ h3 {
   z-index: 10;
 }
 
+body {
+    padding-top: 70px;
+  }
+
+
+​
+
 .jumbotron {
   margin-top: 3%;
 }
@@ -58,7 +65,6 @@ h3 {
 
 .tryThis {
   width: 20%;
-  height: 260px;
   background-color: grey;
   margin: 2% 5%;
   border-radius: 10px;
@@ -86,18 +92,6 @@ h3 {
 .tryThis h1 {
   color: white;
 }
-
-
-/* .jumbotron p {
-   margin-bottom: 15px;
-   font-size: 12px;
-   font-weight: 200;
-   float: right;
-   margin-right: 20px;
- } */
-
-
-/*modal style info*/
 
 .modal-body {
   background-color: gray;
@@ -532,7 +526,7 @@ input:checked+.slider:before {
   font-weight: 400;
 }
 
-.timeline .timeline-item .timeline-content.right {
+.timeline .timeline-item:nth-child(even) .timeline-content {
   float: right;
   text-align: left;
 }
@@ -551,8 +545,7 @@ input:checked+.slider:before {
     text-align: left;
     width: 90%;
   }
-  .timeline .timeline-item .timeline-content::before,
-  .timeline .timeline-item .timeline-content.right::before {
+  .timeline .timeline-item .timeline-content::before {
     border-left: 0;
     border-right: 7px solid #fefefe;
     left: 10%;
