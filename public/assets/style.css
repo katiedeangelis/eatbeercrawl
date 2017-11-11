@@ -812,7 +812,7 @@ input:checked+.slider:before {
 }
 @media screen and (max-width: 768px) {
   .jumbotron {
-    margin-top: 120px;
+    margin-top: 50px;
   }
   .container-fluid {
     height: 150px;
