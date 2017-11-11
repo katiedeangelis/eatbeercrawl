@@ -93,14 +93,16 @@
     background-color: gray;
   }
 
-  a:hover {
+  .modalbtn:hover {
     background-color: rgb(56, 56, 56);
     color: white;
+    border: solid 1px black;
   }
 
   .modalbtn {
     background-color: black;
     color: white;
+    border: solid 1px black
   }
 
   .close,
@@ -501,7 +503,7 @@ input:checked+.slider:before {
     padding: 0;
 
     width: 90%;
-    background: #fefefe;
+    background: #7a7a7a98;
     padding: 0.25rem;
     border-radius: 5px;
     -webkit-align-items: center;
@@ -665,7 +667,7 @@ input:checked+.slider:before {
   }
 
   .timeline::before {
-    background: #fefefe;
+    background: #7a7a7a98;
     content: '';
     height: 100%;
     left: 50%;
@@ -773,7 +775,7 @@ input:checked+.slider:before {
     }
     .timeline .timeline-item .timeline-content::before {
       border-left: 0;
-      border-right: 7px solid #fefefe;
+      border-right: 7px solid #7a7a7a98;
       left: 10%;
       margin-left: -6px;
     }
@@ -800,7 +802,7 @@ input:checked+.slider:before {
       }
       .timeline .timeline-item .timeline-content::before {
         border-left: 0;
-        border-right: 7px solid #fefefe;
+        border-right: 7px solid #7a7a7a98;
         left: 10%;
         margin-left: -6px;
       }
@@ -821,7 +823,8 @@ input:checked+.slider:before {
     float: right;
   }
   .tryThis {
-    width: 90%;
+    width: auto;
+    float: left;
   }
   
 }
