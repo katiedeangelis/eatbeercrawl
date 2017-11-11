@@ -43,6 +43,13 @@ h3 {
   z-index: 10;
 }
 
+body {
+    padding-top: 70px;
+  }
+
+
+​
+
 .jumbotron {
   margin-top: 3%;
 }
