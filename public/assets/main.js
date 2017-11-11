@@ -44,15 +44,15 @@ function initMap() {
     // If there is an id then load the trip
     if (currentTripID != null && currentTripID != "") {
         db.collection("trips").doc(currentTripID).get()
-        .then(function (doc) {
-            currentTripInfo = doc.data();
-            $("#crawl-name").text(currentTripInfo.title)
-            searchCrawlLocations();
-        })
-        .catch(function (error) {
-            console.error("Error adding document: ", error);
-        });
-    
+            .then(function (doc) {
+                currentTripInfo = doc.data();
+                $("#crawl-name").text(currentTripInfo.title)
+                searchCrawlLocations();
+            })
+            .catch(function (error) {
+                console.error("Error adding document: ", error);
+            });
+
         // Map options
         var options = {
             zoom: 8,
