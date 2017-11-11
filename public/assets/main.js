@@ -9,9 +9,9 @@ var results;
 var currentTripID;
 var currentTripInfo;
 
-
 // $(window).load(function() {
-
+// reload page button
+$('#new-crawl').click(function() { window.reload(); }); 
 // var autocomplete = new google.maps.places.Autocomplete(document.getElementById("search-location"), { types: ['(cities)'] });
 
 
