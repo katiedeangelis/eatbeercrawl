@@ -489,6 +489,10 @@
       text-align: left;
   }
 
+  .logo-main {
+      width: 100%;
+  }
+
   @media screen and (max-width: 39.9375em) {
       .timeline {
           margin: 30px;
