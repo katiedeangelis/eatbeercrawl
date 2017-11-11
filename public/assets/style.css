@@ -589,5 +589,8 @@ input:checked+.slider:before {
  .jumbotron {
    margin-top: 120px;
  }
+ .navbar {
+   height: 175px;
+ }
  
 }
