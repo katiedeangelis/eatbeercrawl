@@ -14,16 +14,39 @@ var currentTripInfo;
 $('#new-crawl').click(function() { window.reload(); }); 
 // var autocomplete = new google.maps.places.Autocomplete(document.getElementById("search-location"), { types: ['(cities)'] });
 
+document.getElementById("search-location").addEventListener("focus", initAutocomplete);
+
+function initAutocomplete() {
+    autocomplete = new google.maps.places.Autocomplete(
+        (document.getElementById("search-location")), { types: ['geocode'] });
+}
+// Bias the autocomplete object to the user's geographical location,
+// as supplied by the browser's 'navigator.geolocation' object.
+function geolocate() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var geolocation = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+            var circle = new google.maps.Circle({
+                center: geolocation,
+                radius: position.coords.accuracy
+            });
+            autocomplete.setBounds(circle.getBounds());
+        });
+    }
+}
 
 
 function initMap() {
     currentTripID = window.location.hash.substring(1);
     db.collection("trips").doc(currentTripID).get()
-        .then(function (doc) {
+        .then(function(doc) {
             currentTripInfo = doc.data();
             searchCrawlLocations();
         })
-        .catch(function (error) {
+        .catch(function(error) {
             console.error("Error adding document: ", error);
         });
     // Map options
@@ -54,8 +77,14 @@ function callback(results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
         results = randomize(results);
 
+        var savedPlaces = [];
         var waypoints = [];
         for (var i = 0; i < numberOfLocations; i++) {
+            savedPlaces.push({
+                location: results[i].formatted_address,
+                name: results[i].name
+            });
+            console.log(savedPlaces);
             createMarker(results[i]);
             waypoints.push({
                 location: results[i].formatted_address,
@@ -63,13 +92,16 @@ function callback(results, status) {
             });
         }
     }
+    // Append/update existing key with origin, way points, and destination place information
+    currentTripInfo.saveplaced = savedPlaces;
+    db.collection("trips").doc(currentTripID).set(currentTripInfo)
     directionsService.route({
         origin: results[0].formatted_address,
         destination: results[numberOfLocations - 1].formatted_address,
         optimizeWaypoints: true,
         waypoints: waypoints,
         travelMode: 'WALKING'
-    }, function (response, status) {
+    }, function(response, status) {
         if (status === 'OK') {
             directionsRenderer.setDirections(response);
             directionsRenderer.setMap(map);
@@ -88,12 +120,12 @@ function createMarker(place) {
 
     markersArray.push(marker);
 
-    google.maps.event.addListener(marker, 'click', function () {
+    google.maps.event.addListener(marker, 'click', function() {
         infowindow.setContent(place.name);
         infowindow.open(map, this);
     });
 
-    google.maps.event.addListener(marker, 'click', function () {
+    google.maps.event.addListener(marker, 'click', function() {
         infowindow.setContent(place.name);
         infowindow.open(map, this);
     });
@@ -110,7 +142,7 @@ function searchCrawlLocations() {
 
     geocoder.geocode({
         'address': searchLocation
-    }, function (results, status) {
+    }, function(results, status) {
 
         if (status == google.maps.GeocoderStatus.OK) {
             var latitude = results[0].geometry.location.lat();
@@ -155,4 +187,3 @@ function randomize(array) {
 
     return array;
 }
-// });
