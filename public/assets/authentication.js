@@ -56,7 +56,6 @@
  // This is the login button.    
  $("#btnLogin").on("click", function () {
      var user = firebase.auth().signInWithRedirect(provider);
-     sendUserToFirebase(user);
  })
 
  $("#btnSignUp").on("click", function () {

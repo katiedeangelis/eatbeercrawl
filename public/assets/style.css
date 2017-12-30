@@ -4,6 +4,16 @@
       background-color: grey;
   }
 
+  #quest-text {
+      color: #ea973e;
+  }
+
+  .container-fluid {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
   .prof-li {
       font-size: 20px;
       margin: 20px auto auto 20px
@@ -491,7 +501,6 @@
 
   .logo-main {
       width: 100%;
-      margin-top: 90px;
   }
 
   @media screen and (max-width: 39.9375em) {
